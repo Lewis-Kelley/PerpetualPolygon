@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6D1A4051D1C9ADB00B42E72"
+               BlueprintIdentifier = "F6121DFD1D2AD56A00CF7F2D"
                BuildableName = "PerpetualPolygon.app"
                BlueprintName = "PerpetualPolygon"
                ReferencedContainer = "container:PerpetualPolygon.xcodeproj">
@@ -28,31 +28,11 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6D1A4191D1C9ADB00B42E72"
-               BuildableName = "PerpetualPolygonTests.xctest"
-               BlueprintName = "PerpetualPolygonTests"
-               ReferencedContainer = "container:PerpetualPolygon.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6D1A4241D1C9ADB00B42E72"
-               BuildableName = "PerpetualPolygonUITests.xctest"
-               BlueprintName = "PerpetualPolygonUITests"
-               ReferencedContainer = "container:PerpetualPolygon.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6D1A4051D1C9ADB00B42E72"
+            BlueprintIdentifier = "F6121DFD1D2AD56A00CF7F2D"
             BuildableName = "PerpetualPolygon.app"
             BlueprintName = "PerpetualPolygon"
             ReferencedContainer = "container:PerpetualPolygon.xcodeproj">
@@ -75,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6D1A4051D1C9ADB00B42E72"
+            BlueprintIdentifier = "F6121DFD1D2AD56A00CF7F2D"
             BuildableName = "PerpetualPolygon.app"
             BlueprintName = "PerpetualPolygon"
             ReferencedContainer = "container:PerpetualPolygon.xcodeproj">
@@ -94,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6D1A4051D1C9ADB00B42E72"
+            BlueprintIdentifier = "F6121DFD1D2AD56A00CF7F2D"
             BuildableName = "PerpetualPolygon.app"
             BlueprintName = "PerpetualPolygon"
             ReferencedContainer = "container:PerpetualPolygon.xcodeproj">

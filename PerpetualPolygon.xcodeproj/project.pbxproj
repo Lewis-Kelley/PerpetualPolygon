@@ -7,64 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F6D1A40A1D1C9ADB00B42E72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D1A4091D1C9ADB00B42E72 /* AppDelegate.swift */; };
-		F6D1A40C1D1C9ADB00B42E72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D1A40B1D1C9ADB00B42E72 /* ViewController.swift */; };
-		F6D1A40F1D1C9ADB00B42E72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6D1A40D1D1C9ADB00B42E72 /* Main.storyboard */; };
-		F6D1A4111D1C9ADB00B42E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6D1A4101D1C9ADB00B42E72 /* Assets.xcassets */; };
-		F6D1A4141D1C9ADB00B42E72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6D1A4121D1C9ADB00B42E72 /* LaunchScreen.storyboard */; };
-		F6D1A41F1D1C9ADB00B42E72 /* PerpetualPolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D1A41E1D1C9ADB00B42E72 /* PerpetualPolygonTests.swift */; };
-		F6D1A42A1D1C9ADB00B42E72 /* PerpetualPolygonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D1A4291D1C9ADB00B42E72 /* PerpetualPolygonUITests.swift */; };
+		F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */; };
+		F6121E041D2AD56A00CF7F2D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F6121E031D2AD56A00CF7F2D /* GameScene.sks */; };
+		F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E051D2AD56A00CF7F2D /* GameScene.swift */; };
+		F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E071D2AD56A00CF7F2D /* GameViewController.swift */; };
+		F6121E0B1D2AD56A00CF7F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E091D2AD56A00CF7F2D /* Main.storyboard */; };
+		F6121E0D1D2AD56A00CF7F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */; };
+		F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F6D1A41B1D1C9ADB00B42E72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F6D1A3FE1D1C9ADB00B42E72 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F6D1A4051D1C9ADB00B42E72;
-			remoteInfo = PerpetualPolygon;
-		};
-		F6D1A4261D1C9ADB00B42E72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F6D1A3FE1D1C9ADB00B42E72 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F6D1A4051D1C9ADB00B42E72;
-			remoteInfo = PerpetualPolygon;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		F6D1A4061D1C9ADB00B42E72 /* PerpetualPolygon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerpetualPolygon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6D1A4091D1C9ADB00B42E72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6D1A40B1D1C9ADB00B42E72 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F6D1A40E1D1C9ADB00B42E72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F6D1A4101D1C9ADB00B42E72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F6D1A4131D1C9ADB00B42E72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F6D1A4151D1C9ADB00B42E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6D1A41A1D1C9ADB00B42E72 /* PerpetualPolygonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerpetualPolygonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6D1A41E1D1C9ADB00B42E72 /* PerpetualPolygonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerpetualPolygonTests.swift; sourceTree = "<group>"; };
-		F6D1A4201D1C9ADB00B42E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6D1A4251D1C9ADB00B42E72 /* PerpetualPolygonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerpetualPolygonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6D1A4291D1C9ADB00B42E72 /* PerpetualPolygonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerpetualPolygonUITests.swift; sourceTree = "<group>"; };
-		F6D1A42B1D1C9ADB00B42E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6121DFE1D2AD56A00CF7F2D /* PerpetualPolygon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerpetualPolygon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F6121E031D2AD56A00CF7F2D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		F6121E051D2AD56A00CF7F2D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		F6121E071D2AD56A00CF7F2D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		F6121E0A1D2AD56A00CF7F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6121E0F1D2AD56A00CF7F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F6121E111D2AD56A00CF7F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F6D1A4031D1C9ADB00B42E72 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4171D1C9ADB00B42E72 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4221D1C9ADB00B42E72 /* Frameworks */ = {
+		F6121DFB1D2AD56A00CF7F2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,67 +39,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F6D1A3FD1D1C9ADB00B42E72 = {
+		F6121DF51D2AD56900CF7F2D = {
 			isa = PBXGroup;
 			children = (
-				F6D1A4081D1C9ADB00B42E72 /* PerpetualPolygon */,
-				F6D1A41D1D1C9ADB00B42E72 /* PerpetualPolygonTests */,
-				F6D1A4281D1C9ADB00B42E72 /* PerpetualPolygonUITests */,
-				F6D1A4071D1C9ADB00B42E72 /* Products */,
+				F6121E001D2AD56A00CF7F2D /* PerpetualPolygon */,
+				F6121DFF1D2AD56A00CF7F2D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F6D1A4071D1C9ADB00B42E72 /* Products */ = {
+		F6121DFF1D2AD56A00CF7F2D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F6D1A4061D1C9ADB00B42E72 /* PerpetualPolygon.app */,
-				F6D1A41A1D1C9ADB00B42E72 /* PerpetualPolygonTests.xctest */,
-				F6D1A4251D1C9ADB00B42E72 /* PerpetualPolygonUITests.xctest */,
+				F6121DFE1D2AD56A00CF7F2D /* PerpetualPolygon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F6D1A4081D1C9ADB00B42E72 /* PerpetualPolygon */ = {
+		F6121E001D2AD56A00CF7F2D /* PerpetualPolygon */ = {
 			isa = PBXGroup;
 			children = (
-				F6D1A4091D1C9ADB00B42E72 /* AppDelegate.swift */,
-				F6D1A40B1D1C9ADB00B42E72 /* ViewController.swift */,
-				F6D1A40D1D1C9ADB00B42E72 /* Main.storyboard */,
-				F6D1A4101D1C9ADB00B42E72 /* Assets.xcassets */,
-				F6D1A4121D1C9ADB00B42E72 /* LaunchScreen.storyboard */,
-				F6D1A4151D1C9ADB00B42E72 /* Info.plist */,
+				F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */,
+				F6121E031D2AD56A00CF7F2D /* GameScene.sks */,
+				F6121E051D2AD56A00CF7F2D /* GameScene.swift */,
+				F6121E071D2AD56A00CF7F2D /* GameViewController.swift */,
+				F6121E091D2AD56A00CF7F2D /* Main.storyboard */,
+				F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */,
+				F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */,
+				F6121E111D2AD56A00CF7F2D /* Info.plist */,
 			);
 			path = PerpetualPolygon;
-			sourceTree = "<group>";
-		};
-		F6D1A41D1D1C9ADB00B42E72 /* PerpetualPolygonTests */ = {
-			isa = PBXGroup;
-			children = (
-				F6D1A41E1D1C9ADB00B42E72 /* PerpetualPolygonTests.swift */,
-				F6D1A4201D1C9ADB00B42E72 /* Info.plist */,
-			);
-			path = PerpetualPolygonTests;
-			sourceTree = "<group>";
-		};
-		F6D1A4281D1C9ADB00B42E72 /* PerpetualPolygonUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F6D1A4291D1C9ADB00B42E72 /* PerpetualPolygonUITests.swift */,
-				F6D1A42B1D1C9ADB00B42E72 /* Info.plist */,
-			);
-			path = PerpetualPolygonUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F6D1A4051D1C9ADB00B42E72 /* PerpetualPolygon */ = {
+		F6121DFD1D2AD56A00CF7F2D /* PerpetualPolygon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F6D1A42E1D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygon" */;
+			buildConfigurationList = F6121E141D2AD56A00CF7F2D /* Build configuration list for PBXNativeTarget "PerpetualPolygon" */;
 			buildPhases = (
-				F6D1A4021D1C9ADB00B42E72 /* Sources */,
-				F6D1A4031D1C9ADB00B42E72 /* Frameworks */,
-				F6D1A4041D1C9ADB00B42E72 /* Resources */,
+				F6121DFA1D2AD56A00CF7F2D /* Sources */,
+				F6121DFB1D2AD56A00CF7F2D /* Frameworks */,
+				F6121DFC1D2AD56A00CF7F2D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -142,69 +87,25 @@
 			);
 			name = PerpetualPolygon;
 			productName = PerpetualPolygon;
-			productReference = F6D1A4061D1C9ADB00B42E72 /* PerpetualPolygon.app */;
+			productReference = F6121DFE1D2AD56A00CF7F2D /* PerpetualPolygon.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F6D1A4191D1C9ADB00B42E72 /* PerpetualPolygonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F6D1A4311D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygonTests" */;
-			buildPhases = (
-				F6D1A4161D1C9ADB00B42E72 /* Sources */,
-				F6D1A4171D1C9ADB00B42E72 /* Frameworks */,
-				F6D1A4181D1C9ADB00B42E72 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F6D1A41C1D1C9ADB00B42E72 /* PBXTargetDependency */,
-			);
-			name = PerpetualPolygonTests;
-			productName = PerpetualPolygonTests;
-			productReference = F6D1A41A1D1C9ADB00B42E72 /* PerpetualPolygonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F6D1A4241D1C9ADB00B42E72 /* PerpetualPolygonUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F6D1A4341D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygonUITests" */;
-			buildPhases = (
-				F6D1A4211D1C9ADB00B42E72 /* Sources */,
-				F6D1A4221D1C9ADB00B42E72 /* Frameworks */,
-				F6D1A4231D1C9ADB00B42E72 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F6D1A4271D1C9ADB00B42E72 /* PBXTargetDependency */,
-			);
-			name = PerpetualPolygonUITests;
-			productName = PerpetualPolygonUITests;
-			productReference = F6D1A4251D1C9ADB00B42E72 /* PerpetualPolygonUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F6D1A3FE1D1C9ADB00B42E72 /* Project object */ = {
+		F6121DF61D2AD56900CF7F2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Lewis;
 				TargetAttributes = {
-					F6D1A4051D1C9ADB00B42E72 = {
+					F6121DFD1D2AD56A00CF7F2D = {
 						CreatedOnToolsVersion = 7.3.1;
-					};
-					F6D1A4191D1C9ADB00B42E72 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = F6D1A4051D1C9ADB00B42E72;
-					};
-					F6D1A4241D1C9ADB00B42E72 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = F6D1A4051D1C9ADB00B42E72;
 					};
 				};
 			};
-			buildConfigurationList = F6D1A4011D1C9ADB00B42E72 /* Build configuration list for PBXProject "PerpetualPolygon" */;
+			buildConfigurationList = F6121DF91D2AD56900CF7F2D /* Build configuration list for PBXProject "PerpetualPolygon" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -212,99 +113,56 @@
 				en,
 				Base,
 			);
-			mainGroup = F6D1A3FD1D1C9ADB00B42E72;
-			productRefGroup = F6D1A4071D1C9ADB00B42E72 /* Products */;
+			mainGroup = F6121DF51D2AD56900CF7F2D;
+			productRefGroup = F6121DFF1D2AD56A00CF7F2D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F6D1A4051D1C9ADB00B42E72 /* PerpetualPolygon */,
-				F6D1A4191D1C9ADB00B42E72 /* PerpetualPolygonTests */,
-				F6D1A4241D1C9ADB00B42E72 /* PerpetualPolygonUITests */,
+				F6121DFD1D2AD56A00CF7F2D /* PerpetualPolygon */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F6D1A4041D1C9ADB00B42E72 /* Resources */ = {
+		F6121DFC1D2AD56A00CF7F2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6D1A4141D1C9ADB00B42E72 /* LaunchScreen.storyboard in Resources */,
-				F6D1A4111D1C9ADB00B42E72 /* Assets.xcassets in Resources */,
-				F6D1A40F1D1C9ADB00B42E72 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4181D1C9ADB00B42E72 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4231D1C9ADB00B42E72 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F6121E041D2AD56A00CF7F2D /* GameScene.sks in Resources */,
+				F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */,
+				F6121E0D1D2AD56A00CF7F2D /* Assets.xcassets in Resources */,
+				F6121E0B1D2AD56A00CF7F2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F6D1A4021D1C9ADB00B42E72 /* Sources */ = {
+		F6121DFA1D2AD56A00CF7F2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6D1A40C1D1C9ADB00B42E72 /* ViewController.swift in Sources */,
-				F6D1A40A1D1C9ADB00B42E72 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4161D1C9ADB00B42E72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F6D1A41F1D1C9ADB00B42E72 /* PerpetualPolygonTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6D1A4211D1C9ADB00B42E72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F6D1A42A1D1C9ADB00B42E72 /* PerpetualPolygonUITests.swift in Sources */,
+				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
+				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
+				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F6D1A41C1D1C9ADB00B42E72 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F6D1A4051D1C9ADB00B42E72 /* PerpetualPolygon */;
-			targetProxy = F6D1A41B1D1C9ADB00B42E72 /* PBXContainerItemProxy */;
-		};
-		F6D1A4271D1C9ADB00B42E72 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F6D1A4051D1C9ADB00B42E72 /* PerpetualPolygon */;
-			targetProxy = F6D1A4261D1C9ADB00B42E72 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		F6D1A40D1D1C9ADB00B42E72 /* Main.storyboard */ = {
+		F6121E091D2AD56A00CF7F2D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F6D1A40E1D1C9ADB00B42E72 /* Base */,
+				F6121E0A1D2AD56A00CF7F2D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		F6D1A4121D1C9ADB00B42E72 /* LaunchScreen.storyboard */ = {
+		F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F6D1A4131D1C9ADB00B42E72 /* Base */,
+				F6121E0F1D2AD56A00CF7F2D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -312,7 +170,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F6D1A42C1D1C9ADB00B42E72 /* Debug */ = {
+		F6121E121D2AD56A00CF7F2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -332,7 +190,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -358,7 +216,7 @@
 			};
 			name = Debug;
 		};
-		F6D1A42D1D1C9ADB00B42E72 /* Release */ = {
+		F6121E131D2AD56A00CF7F2D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -397,7 +255,7 @@
 			};
 			name = Release;
 		};
-		F6D1A42F1D1C9ADB00B42E72 /* Debug */ = {
+		F6121E151D2AD56A00CF7F2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -405,11 +263,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		F6D1A4301D1C9ADB00B42E72 /* Release */ = {
+		F6121E161D2AD56A00CF7F2D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -417,93 +274,30 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		F6D1A4321D1C9ADB00B42E72 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PerpetualPolygonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerpetualPolygon.app/PerpetualPolygon";
-			};
-			name = Debug;
-		};
-		F6D1A4331D1C9ADB00B42E72 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PerpetualPolygonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerpetualPolygon.app/PerpetualPolygon";
-			};
-			name = Release;
-		};
-		F6D1A4351D1C9ADB00B42E72 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PerpetualPolygonUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PerpetualPolygon;
-			};
-			name = Debug;
-		};
-		F6D1A4361D1C9ADB00B42E72 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PerpetualPolygonUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PerpetualPolygon;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F6D1A4011D1C9ADB00B42E72 /* Build configuration list for PBXProject "PerpetualPolygon" */ = {
+		F6121DF91D2AD56900CF7F2D /* Build configuration list for PBXProject "PerpetualPolygon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F6D1A42C1D1C9ADB00B42E72 /* Debug */,
-				F6D1A42D1D1C9ADB00B42E72 /* Release */,
+				F6121E121D2AD56A00CF7F2D /* Debug */,
+				F6121E131D2AD56A00CF7F2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F6D1A42E1D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygon" */ = {
+		F6121E141D2AD56A00CF7F2D /* Build configuration list for PBXNativeTarget "PerpetualPolygon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F6D1A42F1D1C9ADB00B42E72 /* Debug */,
-				F6D1A4301D1C9ADB00B42E72 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		F6D1A4311D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F6D1A4321D1C9ADB00B42E72 /* Debug */,
-				F6D1A4331D1C9ADB00B42E72 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		F6D1A4341D1C9ADB00B42E72 /* Build configuration list for PBXNativeTarget "PerpetualPolygonUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F6D1A4351D1C9ADB00B42E72 /* Debug */,
-				F6D1A4361D1C9ADB00B42E72 /* Release */,
+				F6121E151D2AD56A00CF7F2D /* Debug */,
+				F6121E161D2AD56A00CF7F2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F6D1A3FE1D1C9ADB00B42E72 /* Project object */;
+	rootObject = F6121DF61D2AD56900CF7F2D /* Project object */;
 }
