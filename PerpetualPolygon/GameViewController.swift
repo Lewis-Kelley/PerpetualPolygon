@@ -26,6 +26,13 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
+            let center = SKSpriteNode(imageNamed: "hexagon.jpg")
+            center.xScale = 0.25
+            center.yScale = 0.25
+            center.position = CGPoint(x: 450, y: 450)
+            
+            scene.addChild(center)
+            
             skView.presentScene(scene)
         }
     }
