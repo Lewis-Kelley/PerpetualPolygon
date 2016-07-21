@@ -15,12 +15,8 @@ class GameScene: SKScene {
     let PLATFORM_H:CGFloat = 30.0
     let PLATFORM_H_OFFSET:CGFloat = 108.0
     
-    var platform = SKShapeNode()
+    var platform: Platform?
     var sides = 6
-
-    func getEdgeAngle() -> CGFloat {
-        return CGFloat(M_PI) * (0.5 - 1 / CGFloat(sides)) // ([Pi / 2] - [2 * Pi] / [2 * sides])
-    }
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -45,23 +41,8 @@ class GameScene: SKScene {
 //            y:  -PLATFORM_H / 2.0,
 //            width: PLATFORM_W,
 //            height: PLATFORM_H))
-        var path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, 0.0, 0.0)
-        CGPathAddLineToPoint(path, nil, -3000 * cos(getEdgeAngle()), 3000 * sin(getEdgeAngle()))
-        CGPathAddLineToPoint(path, nil, -3000, -3000)
-        CGPathAddLineToPoint(path, nil, 3000, -3000)
-        CGPathAddLineToPoint(path, nil, 3000 * cos(getEdgeAngle()), 3000 * sin(getEdgeAngle()))
-        CGPathAddLineToPoint(path, nil, 0.0, 0.0)
         
-        platform = SKShapeNode(path: path)
-        platform.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
-        print("position: \(platform.position)")
-        platform.fillColor = SKColor.greenColor()
-        platform.strokeColor = SKColor.blackColor()
-        platform.lineWidth = 5.0
-        platform.zPosition = 1.0 //Z pos defines display order
-
-        self.addChild(platform)
+        platform = Platform(scene: self, sides: sides, fillCol: SKColor.greenColor(), zPos: 1.0)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -69,16 +50,8 @@ class GameScene: SKScene {
         
         for touch in touches {
             let location = touch.locationInNode(self)
-            
-            print("location: \(location)")
-            
             /* Animate platform moving in circle depending on if the touch was right or left */
-//            platform.runAction(SKAction.followPath(
-//                UIBezierPath(arcCenter: CGPoint(x: 0, y: 0), radius: PLATFORM_H_OFFSET, startAngle: platformPos, endAngle: location.x > CGRectGetMidX(frame) ? 100 : -100, clockwise: location.x > CGRectGetMidX(frame)).CGPath,
-//                asOffset: false,
-//                orientToPath: false, speed: 300.0))
-            
-            platform.runAction(SKAction.rotateByAngle(2.0 * CGFloat(M_PI), duration: 20))
+            platform?.update(location.x < CGRectGetMidX(frame), pressedR: location.x > CGRectGetMidX(frame))
             
 //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
 //            
@@ -95,7 +68,7 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        platform.removeAllActions() //Stop platform
+        platform?.update(false, pressedR: false)
     }
    
     override func update(currentTime: CFTimeInterval) {
