@@ -12,17 +12,18 @@ import SpriteKit
 class Platform {
     let TOLERANCE:CGFloat = 0.001
     let SPEED:Double = 2.0 * M_PI / 2.0
+    let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
 
     var sides: Int
     var pos = 0 //The side of the polygon currently occupied by the rightmost part of the platform, starting from the top and proceeding ccw
     var length = 1 //The number of sides taken up by the platform
     
-    var passedSide = false //Keeps track of whether the platform has passed a corner in the current motion
     var movingCW = false
     var movingCCW = false
     
     var img = SKShapeNode()
     
+    var firstCall = true
     var _sideFactor:Double?
     var prevAngle:CGFloat = 0.0
     var _tarAngle:CGFloat = 0.0
@@ -86,7 +87,11 @@ class Platform {
         return _tarAngle
     }
     
-    func update(pressedL:Bool, pressedR:Bool) {
+    func update(pressedL:Bool, pressedR:Bool, resetFirstCall:Bool) {
+        if resetFirstCall {
+            firstCall = true
+        }
+        
         var tarAng = img.zRotation
         
         if pressedL {
@@ -107,8 +112,8 @@ class Platform {
             tarAng = tarAngle()
         } else { // Move towards nearest side
             let toTarAngle = _tarAngle - tarAng
-            let toPrevAngle =  prevAngle - tarAng
-            if abs(toTarAngle) < abs(toPrevAngle) {
+            let toPrevAngle = prevAngle - tarAng
+            if firstCall || abs(toTarAngle) < PROCEED_WEIGHT * abs(toPrevAngle) {
                 if abs(toTarAngle) < TOLERANCE {
                     movingCW = false
                     movingCCW = false
@@ -118,6 +123,7 @@ class Platform {
                     movingCCW = !movingCW
                 }
             } else {
+                _tarAngle = prevAngle
                 if abs(toPrevAngle) < TOLERANCE {
                     movingCW = false
                     movingCCW = false
@@ -129,8 +135,12 @@ class Platform {
             }
         }
         
-        print("At end of update, tarAng = \(tarAng)")
-        img.runAction(SKAction.rotateToAngle(tarAng, duration: abs(Double(tarAng) - Double(img.zRotation)) / SPEED))
-//        img.runAction(SKAction.rotateByAngle(CGFloat(M_PI), duration: 2.0))
+        img.removeAllActions()
+        img.runAction(SKAction.sequence([SKAction.rotateToAngle(tarAng, duration: abs(Double(tarAng) - Double(img.zRotation)) / SPEED), SKAction.runBlock({ 
+            if pressedL || pressedR {
+                self.firstCall = false
+                self.update(pressedL, pressedR: pressedR, resetFirstCall: false)
+            }
+        })]))
     }
 }

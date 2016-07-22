@@ -16,7 +16,7 @@ class GameScene: SKScene {
     let PLATFORM_H_OFFSET:CGFloat = 108.0
     
     var platform: Platform?
-    var sides = 6
+    var sides = 4
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -51,7 +51,7 @@ class GameScene: SKScene {
         for touch in touches {
             let location = touch.locationInNode(self)
             /* Animate platform moving in circle depending on if the touch was right or left */
-            platform?.update(location.x < CGRectGetMidX(frame), pressedR: location.x > CGRectGetMidX(frame))
+            platform?.update(location.x < CGRectGetMidX(frame), pressedR: location.x > CGRectGetMidX(frame), resetFirstCall: true)
             
 //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
 //            
@@ -68,7 +68,7 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        platform?.update(false, pressedR: false)
+        platform?.update(false, pressedR: false, resetFirstCall: false)
     }
    
     override func update(currentTime: CFTimeInterval) {
