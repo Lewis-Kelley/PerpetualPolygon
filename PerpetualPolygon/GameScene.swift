@@ -10,13 +10,14 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var spawning = false
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
     let PLATFORM_W:CGFloat = 145.0
     let PLATFORM_H:CGFloat = 30.0
     let PLATFORM_H_OFFSET:CGFloat = 108.0
     
     var platform: Platform?
-    var point : Point?
+    var points : [Point?] = []
     var sides = 4
     
     override func didMoveToView(view: SKView) {
@@ -28,14 +29,14 @@ class GameScene: SKScene {
 //        self.addChild(myLabel)
         
         /* Draw Polygon */
-        let centerShape = SKSpriteNode(imageNamed: "hexagon.jpg")
-        centerShape.xScale = POLYGON_SIZE_RATIO
-        centerShape.yScale = centerShape.xScale
-        centerShape.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
-        centerShape.zPosition = 0.0 //Z pos defines display order
-        
-        self.addChild(centerShape)
-        
+//        let centerShape = SKSpriteNode(imageNamed: "hexagon.jpg")
+//        centerShape.xScale = POLYGON_SIZE_RATIO
+//        centerShape.yScale = centerShape.xScale
+//        centerShape.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+//        centerShape.zPosition = 0.0 //Z pos defines display order
+//        
+//        self.addChild(centerShape)
+//        
         /* Draw platform */
 //        platform = SKShapeNode(rect:
 //            CGRect(x: -PLATFORM_W / 2.0,
@@ -44,7 +45,7 @@ class GameScene: SKScene {
 //            height: PLATFORM_H))
         
         platform = Platform(scene: self, sides: sides, fillCol: SKColor.greenColor(), zPos: 1.0)
-        point = Point(scene: self, sides: sides)
+        points.append(Point(scene: self, sides: sides))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -75,6 +76,30 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        point?.update()
+        for point in points {
+            point?.update()
+        }
+        if (!self.spawning) {
+            delay(0.75, closure: spawn)
+        }
+    }
+    
+    func removeFromArray(pointToFind : Point) {
+        points.removeAtIndex(0)
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        self.spawning = true
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
+    func spawn() {
+        points.append(Point(scene: self, sides: sides))
+        self.spawning = false
     }
 }
