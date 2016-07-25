@@ -15,10 +15,12 @@ class GameScene: SKScene {
     let PLATFORM_W:CGFloat = 145.0
     let PLATFORM_H:CGFloat = 30.0
     let PLATFORM_H_OFFSET:CGFloat = 108.0
+    let CENTER_SHAPE_RADIUS: CGFloat = 100.0
+    let PLATFORM_SHAPE_RADIUS: CGFloat = 120.0
     
     var platform: Platform?
     var points : [Point?] = []
-    var sides = 4
+    var sides = 6
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -44,8 +46,41 @@ class GameScene: SKScene {
 //            width: PLATFORM_W,
 //            height: PLATFORM_H))
         
-        platform = Platform(scene: self, sides: sides, fillCol: SKColor.greenColor(), zPos: 1.0)
+        backgroundColor = SKColor.lightGrayColor()
+        
+        platform = Platform(scene: self, sides: sides, fillCol: SKColor.lightGrayColor(), zPos: 1.0)
         points.append(Point(scene: self, sides: sides))
+        
+        /* Create center shape and platform shape */
+        let startTheta = CGFloat(M_PI  * (0.5 - 1.0 / Double(sides))) // ([Pi / 2] - [2 * Pi] / [2 * sides])
+        let centerPath = CGPathCreateMutable()
+        let platformPath = CGPathCreateMutable()
+        
+        CGPathMoveToPoint(centerPath, nil, CENTER_SHAPE_RADIUS * cos(startTheta), CENTER_SHAPE_RADIUS * sin(startTheta))
+        CGPathMoveToPoint(platformPath, nil, PLATFORM_SHAPE_RADIUS * cos(startTheta), PLATFORM_SHAPE_RADIUS * sin(startTheta))
+        
+        var theta = startTheta
+        for _ in 1...sides {
+            theta += 2 * CGFloat(M_PI) / CGFloat(sides)
+            CGPathAddLineToPoint(centerPath, nil, CENTER_SHAPE_RADIUS * cos(theta), CENTER_SHAPE_RADIUS * sin(theta))
+            CGPathAddLineToPoint(platformPath, nil, PLATFORM_SHAPE_RADIUS * cos(theta), PLATFORM_SHAPE_RADIUS * sin(theta))
+        }
+        
+        let centerShape = SKShapeNode(path: centerPath)
+        centerShape.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        centerShape.fillColor = SKColor.greenColor()
+        centerShape.lineWidth = 0.0
+        centerShape.zPosition = 100.0
+        
+        addChild(centerShape)
+        
+        let platformShape = SKShapeNode(path: platformPath)
+        platformShape.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        platformShape.fillColor = SKColor.redColor()
+        platformShape.lineWidth = 0.0
+        platformShape.zPosition = 0.0
+        
+        addChild(platformShape)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

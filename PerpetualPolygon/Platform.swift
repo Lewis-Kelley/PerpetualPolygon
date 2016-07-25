@@ -42,8 +42,7 @@ class Platform {
         img = SKShapeNode(path: path)
         img.position = CGPoint(x: CGRectGetMidX(scene.frame), y: CGRectGetMidY(scene.frame))
         img.fillColor = fillCol
-        img.strokeColor = SKColor.blackColor()
-        img.lineWidth = 5.0
+        img.lineWidth = 0.0
         img.zPosition = zPos
         
         scene.addChild(img)
