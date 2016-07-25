@@ -16,6 +16,7 @@ class GameScene: SKScene {
     let PLATFORM_H_OFFSET:CGFloat = 108.0
     
     var platform: Platform?
+    var point : Point?
     var sides = 4
     
     override func didMoveToView(view: SKView) {
@@ -43,6 +44,7 @@ class GameScene: SKScene {
 //            height: PLATFORM_H))
         
         platform = Platform(scene: self, sides: sides, fillCol: SKColor.greenColor(), zPos: 1.0)
+        point = Point(scene: self, sides: sides)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -73,5 +75,6 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        point?.update()
     }
 }

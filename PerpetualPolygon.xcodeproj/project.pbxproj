@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6276FC261D2C0381007664D6 /* hexagon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6276FC251D2C0381007664D6 /* hexagon.jpg */; };
+		62B5AB241D45DC9B008E7103 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5AB231D45DC9B008E7103 /* Point.swift */; };
 		F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610FFE81D4176DF009F4EC7 /* Platform.swift */; };
 		F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */; };
 		F6121E041D2AD56A00CF7F2D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F6121E031D2AD56A00CF7F2D /* GameScene.sks */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		6276FC251D2C0381007664D6 /* hexagon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hexagon.jpg; sourceTree = "<group>"; };
+		62B5AB231D45DC9B008E7103 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		F610FFE81D4176DF009F4EC7 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		F6121DFE1D2AD56A00CF7F2D /* PerpetualPolygon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerpetualPolygon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				F6121E111D2AD56A00CF7F2D /* Info.plist */,
 				6276FC251D2C0381007664D6 /* hexagon.jpg */,
 				F610FFE81D4176DF009F4EC7 /* Platform.swift */,
+				62B5AB231D45DC9B008E7103 /* Point.swift */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
+				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
 				F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */,
 				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
