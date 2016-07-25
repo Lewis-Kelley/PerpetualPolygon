@@ -50,7 +50,6 @@ class Point {
                 self.gameRunning = false
                 self.scene.removeChildrenInArray([self.img])
                 (self.scene as! GameScene).removeFromArray(self)
-                print("killed point")
             }
         }
     }
