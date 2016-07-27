@@ -11,6 +11,9 @@ import SpriteKit
 class GameScene: SKScene {
     
     var spawning = false
+    var pointLabel : SKLabelNode?
+    var score = 0
+    var lifeLabel : SKLabelNode?
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
     let PLATFORM_W:CGFloat = 145.0
     let PLATFORM_H:CGFloat = 30.0
@@ -20,7 +23,8 @@ class GameScene: SKScene {
     
     var platform: Platform?
     var points : [Point?] = []
-    var sides = 6
+    var sides = 4
+    var life = 20
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -81,6 +85,20 @@ class GameScene: SKScene {
         platformShape.zPosition = 0.0
         
         addChild(platformShape)
+        
+        self.lifeLabel = SKLabelNode(fontNamed: "Arial")
+        self.lifeLabel!.text = "\(self.life)"
+        self.lifeLabel!.fontSize = 20
+        self.lifeLabel!.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        self.lifeLabel!.zPosition = 101.00
+        addChild(self.lifeLabel!)
+        
+//        self.pointLabel = SKLabelNode(fontNamed: "Arial")
+//        self.pointLabel?.text = "\(self.score)"
+//        self.pointLabel!.fontSize = 20
+//        self.pointLabel!.position = CGPoint(x: 0,y: 0)
+//        addChild(self.pointLabel!)
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -113,14 +131,19 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
         for point in points {
             point?.update()
+            //if (point?.radius == Double(self.CENTER_SHAPE_RADIUS)) {
+                //self.points.removeAtIndex(0)
+           // }
         }
         if (!self.spawning) {
-            delay(0.75, closure: spawn)
+            delay(1.5, closure: spawn)
         }
     }
     
     func removeFromArray(pointToFind : Point) {
         points.removeAtIndex(0)
+        self.life = self.life - 1
+        self.lifeLabel?.text = "\(self.life)"
     }
     
     func delay(delay:Double, closure:()->()) {
