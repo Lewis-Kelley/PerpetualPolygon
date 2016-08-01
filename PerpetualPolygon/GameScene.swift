@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var pointLabel : SKLabelNode?
     var score = 0
     var lifeLabel : SKLabelNode?
+    var posLbl: SKLabelNode? //TEMP
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
     let PLATFORM_W:CGFloat = 145.0
     let PLATFORM_H:CGFloat = 30.0
@@ -23,7 +24,7 @@ class GameScene: SKScene {
     
     var platform: Platform?
     var points : [Point?] = []
-    var sides = 4
+    var sides = 9
     var life = 20
     
     override func didMoveToView(view: SKView) {
@@ -93,6 +94,12 @@ class GameScene: SKScene {
         self.lifeLabel!.zPosition = 101.00
         addChild(self.lifeLabel!)
         
+        self.posLbl = SKLabelNode(fontNamed: "Arial")
+        self.posLbl!.fontSize = 20
+        self.posLbl!.position = CGPoint(x: CGRectGetMinX(self.frame) + 50, y: CGRectGetMidY(self.frame))
+        self.posLbl!.zPosition = 101.00
+        addChild(self.posLbl!)
+        
 //        self.pointLabel = SKLabelNode(fontNamed: "Arial")
 //        self.pointLabel?.text = "\(self.score)"
 //        self.pointLabel!.fontSize = 20
@@ -129,6 +136,7 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        posLbl!.text = "Pos: \((platform?.pos)!)"
         for point in points {
             point?.update()
             //if (point?.radius == Double(self.CENTER_SHAPE_RADIUS)) {

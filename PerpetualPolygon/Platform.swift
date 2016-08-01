@@ -10,12 +10,37 @@ import Foundation
 import SpriteKit
 
 class Platform {
+    let STENCIL_RADIUS: CGFloat = 500
     let TOLERANCE:CGFloat = 0.001
-    let SPEED:Double = 2.0 * M_PI / 2.0
+    let SPEED:Double = 2.0 * M_PI / 1.0
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
 
     var sides: Int
-    var pos = 0 //The side of the polygon currently occupied by the rightmost part of the platform, starting from the top and proceeding ccw
+    var pos: Int { //The side of the polygon currently occupied by the center of the platform, starting from the top and proceeding ccw
+        var rot = img.zRotation
+        
+        while rot <= -TOLERANCE {
+            rot += CGFloat(2.0 * M_PI)
+        }
+        while rot - CGFloat(2.0 * M_PI) >= -TOLERANCE {
+            rot -= CGFloat(2.0 * M_PI)
+        }
+        
+        let decPos = rot / CGFloat(M_PI * 2.0 / Double(sides))
+        let lowPos = Int(decPos)
+        let highPos = Int(decPos) + 1
+        
+        if decPos - CGFloat(lowPos) <= CGFloat(highPos) - decPos {
+            return lowPos
+        }
+        
+        if highPos >= sides {
+            return 0
+        }
+        
+        return highPos
+    }
+    
     var length = 1 //The number of sides taken up by the platform
     
     var movingCW = false
@@ -33,10 +58,11 @@ class Platform {
         
         let path = CGPathCreateMutable()
         CGPathMoveToPoint(path, nil, 0.0, 0.0)
-        CGPathAddLineToPoint(path, nil, -3000 * cos(_getEdgeAngle()), 3000 * sin(_getEdgeAngle()))
-        CGPathAddLineToPoint(path, nil, -3000, -3000)
-        CGPathAddLineToPoint(path, nil, 3000, -3000)
-        CGPathAddLineToPoint(path, nil, 3000 * cos(_getEdgeAngle()), 3000 * sin(_getEdgeAngle()))
+        CGPathAddLineToPoint(path, nil, -STENCIL_RADIUS
+            * cos(_getEdgeAngle()), STENCIL_RADIUS * sin(_getEdgeAngle()))
+        CGPathAddLineToPoint(path, nil, -STENCIL_RADIUS, -STENCIL_RADIUS)
+        CGPathAddLineToPoint(path, nil, STENCIL_RADIUS, -STENCIL_RADIUS)
+        CGPathAddLineToPoint(path, nil, STENCIL_RADIUS * cos(_getEdgeAngle()), STENCIL_RADIUS * sin(_getEdgeAngle()))
         CGPathAddLineToPoint(path, nil, 0.0, 0.0)
         
         img = SKShapeNode(path: path)
