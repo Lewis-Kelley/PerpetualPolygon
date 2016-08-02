@@ -24,7 +24,7 @@ class GameScene: SKScene {
     
     var platform: Platform?
     var points : [Point?] = []
-    var sides = 9
+    var sides = 5
     var life = 20
     
     override func didMoveToView(view: SKView) {
@@ -115,18 +115,6 @@ class GameScene: SKScene {
             let location = touch.locationInNode(self)
             /* Animate platform moving in circle depending on if the touch was right or left */
             platform?.update(location.x < CGRectGetMidX(frame), pressedR: location.x > CGRectGetMidX(frame), resetFirstCall: true)
-            
-//            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-//            
-//            sprite.xScale = 0.5
-//            sprite.yScale = 0.5
-//            sprite.position = location
-//            
-//            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-//            
-//            sprite.runAction(SKAction.repeatActionForever(action))
-//            
-//            self.addChild(sprite)
         }
     }
     
@@ -139,9 +127,10 @@ class GameScene: SKScene {
         posLbl!.text = "Pos: \((platform?.pos)!)"
         for point in points {
             point?.update()
-            //if (point?.radius == Double(self.CENTER_SHAPE_RADIUS)) {
-                //self.points.removeAtIndex(0)
-           // }
+            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 1) % sides) {
+                self.scene?.removeChildrenInArray([point!.img])
+                self.points.removeAtIndex(0)
+            }
         }
         if (!self.spawning) {
             delay(1.5, closure: spawn)
