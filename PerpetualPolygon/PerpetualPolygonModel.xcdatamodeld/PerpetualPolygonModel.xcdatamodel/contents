@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="Colors" representedClassName=".Colors" syncable="YES">
+        <attribute name="backgdB" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="backgdG" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="backgdR" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="platformB" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="platformG" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="platformR" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="pointsB" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="pointsG" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="pointsR" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Colors" positionX="-63" positionY="-18" width="128" height="180"/>
+    </elements>
+</model>

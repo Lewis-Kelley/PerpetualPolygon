@@ -16,6 +16,11 @@
 		F6121E0B1D2AD56A00CF7F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E091D2AD56A00CF7F2D /* Main.storyboard */; };
 		F6121E0D1D2AD56A00CF7F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */; };
 		F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */; };
+		F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */; };
+		F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */; };
+		F6468AA31D5537F200510AB6 /* Colors+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */; };
+		F6468AA41D5537F200510AB6 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA21D5537F200510AB6 /* Colors.swift */; };
+		F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA51D55389200510AB6 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6121E0F1D2AD56A00CF7F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6121E111D2AD56A00CF7F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		F6468A9F1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PerpetualPolygonModel.xcdatamodel; sourceTree = "<group>"; };
+		F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Colors+CoreDataProperties.swift"; path = "../Colors+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6468AA21D5537F200510AB6 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = ../Colors.swift; sourceTree = "<group>"; };
+		F6468AA51D55389200510AB6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,8 @@
 			children = (
 				F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */,
 				F6121E031D2AD56A00CF7F2D /* GameScene.sks */,
+				F6468AA51D55389200510AB6 /* MenuViewController.swift */,
+				F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */,
 				F6121E051D2AD56A00CF7F2D /* GameScene.swift */,
 				F6121E071D2AD56A00CF7F2D /* GameViewController.swift */,
 				F6121E091D2AD56A00CF7F2D /* Main.storyboard */,
@@ -72,6 +84,9 @@
 				F6121E111D2AD56A00CF7F2D /* Info.plist */,
 				F610FFE81D4176DF009F4EC7 /* Platform.swift */,
 				62B5AB231D45DC9B008E7103 /* Point.swift */,
+				F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */,
+				F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */,
+				F6468AA21D5537F200510AB6 /* Colors.swift */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -148,11 +163,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */,
+				F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */,
+				F6468AA41D5537F200510AB6 /* Colors.swift in Sources */,
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
+				F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */,
 				F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */,
 				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
+				F6468AA31D5537F200510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +329,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F6468A9F1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodel */,
+			);
+			currentVersion = F6468A9F1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodel */;
+			path = PerpetualPolygonModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F6121DF61D2AD56900CF7F2D /* Project object */;
 }
