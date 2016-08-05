@@ -13,6 +13,7 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
     let POINTS_TAG = 0
     let PLATFORM_TAG = 1
     let BACKGD_TAG = 2
+    let SHAPE_TAG = 3
     
     let SHOW_MENU_SEGUE = "OptionsToMain"
     
@@ -92,6 +93,10 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
             colors.backgdR = NSNumber(float: red.value)
             colors.backgdG = NSNumber(float: green.value)
             colors.backgdB = NSNumber(float: blue.value)
+        case SHAPE_TAG:
+            colors.shapeR = NSNumber(float: red.value)
+            colors.shapeG = NSNumber(float: green.value)
+            colors.shapeB = NSNumber(float: blue.value)
         default:
             print("Erroneous curTag \(curTag)")
         }
@@ -121,6 +126,10 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
             red.value = Float(colors.backgdR!)
             green.value = Float(colors.backgdG!)
             blue.value = Float(colors.backgdB!)
+        case SHAPE_TAG:
+            red.value = Float(colors.shapeR!)
+            green.value = Float(colors.shapeG!)
+            blue.value = Float(colors.shapeB!)
         default:
             print("Erroneous button tag \(tag)")
         }

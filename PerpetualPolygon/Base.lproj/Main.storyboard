@@ -349,7 +349,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGz-GU-adR">
-                                <rect key="frame" x="20" y="28" width="187" height="50"/>
+                                <rect key="frame" x="20" y="28" width="140" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Pn0-7a-XrB"/>
@@ -362,7 +362,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD1-uP-Mvp">
-                                <rect key="frame" x="207" y="28" width="186" height="50"/>
+                                <rect key="frame" x="160" y="28" width="140" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="iKd-fa-eAc"/>
@@ -375,7 +375,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMD-Nr-TK1">
-                                <rect key="frame" x="393" y="28" width="187" height="50"/>
+                                <rect key="frame" x="300" y="28" width="140" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dsY-46-41O"/>
@@ -385,6 +385,20 @@
                                 </state>
                                 <connections>
                                     <action selector="pressedBt:" destination="bID-bB-WAN" eventType="touchUpInside" id="Cia-Xt-yyc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDa-de-wqI">
+                                <rect key="frame" x="440" y="28" width="140" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nNT-Lz-xGE"/>
+                                    <constraint firstAttribute="height" constant="50" id="tx3-ye-6vt"/>
+                                </constraints>
+                                <state key="normal" title="Shape">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedBt:" destination="bID-bB-WAN" eventType="touchUpInside" id="U6s-2E-UlU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -407,16 +421,20 @@
                             <constraint firstItem="i5t-SH-53i" firstAttribute="top" secondItem="P3M-gS-BIe" secondAttribute="bottom" id="QH9-N8-DGJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MQv-nT-m8z" secondAttribute="trailing" constant="-12" id="QR1-4r-oDK"/>
                             <constraint firstItem="j8J-7k-os8" firstAttribute="leading" secondItem="VnX-5z-DO8" secondAttribute="leadingMargin" constant="-12" id="RfK-ks-fpC"/>
+                            <constraint firstItem="eDa-de-wqI" firstAttribute="leading" secondItem="oMD-Nr-TK1" secondAttribute="trailing" id="RlX-pA-Or4"/>
                             <constraint firstItem="LSu-EH-K70" firstAttribute="leading" secondItem="CO2-4O-hZo" secondAttribute="trailing" constant="8" id="Skb-Kd-LeB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ysk-Be-ZnC" secondAttribute="trailing" constant="-12" id="VHy-Vf-3ls"/>
                             <constraint firstItem="vB5-kU-y3x" firstAttribute="height" secondItem="I1k-g8-H4b" secondAttribute="height" id="VUU-i5-LqN"/>
+                            <constraint firstItem="eDa-de-wqI" firstAttribute="width" secondItem="oMD-Nr-TK1" secondAttribute="width" id="a7L-ts-hnX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LSu-EH-K70" secondAttribute="trailing" constant="-12" id="c55-dK-Say"/>
                             <constraint firstItem="LSu-EH-K70" firstAttribute="top" secondItem="MQv-nT-m8z" secondAttribute="bottom" constant="20" id="cBE-co-aSf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eDa-de-wqI" secondAttribute="trailing" id="cIX-xl-9m6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oMD-Nr-TK1" secondAttribute="trailing" id="cXD-c3-TDx"/>
                             <constraint firstItem="MQv-nT-m8z" firstAttribute="leading" secondItem="I1k-g8-H4b" secondAttribute="trailing" constant="8" id="dQO-Yh-dlu"/>
                             <constraint firstItem="MQv-nT-m8z" firstAttribute="top" secondItem="Ysk-Be-ZnC" secondAttribute="bottom" constant="8" id="eD0-29-54b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P3M-gS-BIe" secondAttribute="trailing" constant="-20" id="fQz-I8-E4j"/>
                             <constraint firstItem="qD1-uP-Mvp" firstAttribute="width" secondItem="YGz-GU-adR" secondAttribute="width" id="fpG-Z3-Ayz"/>
+                            <constraint firstItem="eDa-de-wqI" firstAttribute="top" secondItem="2Sn-Ua-0qX" secondAttribute="bottom" constant="8" id="gPW-7V-ayg"/>
                             <constraint firstItem="YGz-GU-adR" firstAttribute="top" secondItem="2Sn-Ua-0qX" secondAttribute="bottom" constant="8" id="j3s-db-Zv2"/>
                             <constraint firstItem="oMD-Nr-TK1" firstAttribute="leading" secondItem="qD1-uP-Mvp" secondAttribute="trailing" id="k73-Sw-RcD"/>
                             <constraint firstItem="CO2-4O-hZo" firstAttribute="leading" secondItem="VnX-5z-DO8" secondAttribute="leadingMargin" constant="-12" id="kfx-q3-PMH"/>
@@ -427,6 +445,11 @@
                             <constraint firstItem="Ysk-Be-ZnC" firstAttribute="leading" secondItem="VnX-5z-DO8" secondAttribute="leadingMargin" constant="-12" id="vUF-eL-EV6"/>
                             <constraint firstItem="LSu-EH-K70" firstAttribute="height" secondItem="I1k-g8-H4b" secondAttribute="height" id="yUG-Ae-6Bx"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cXD-c3-TDx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="backgdBt" destination="oMD-Nr-TK1" id="bTs-pQ-x5C"/>

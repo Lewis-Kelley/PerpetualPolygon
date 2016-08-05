@@ -23,5 +23,8 @@ extension Colors {
     @NSManaged var backgdR: NSNumber?
     @NSManaged var backgdG: NSNumber?
     @NSManaged var backgdB: NSNumber?
+    @NSManaged var shapeR: NSNumber?
+    @NSManaged var shapeG: NSNumber?
+    @NSManaged var shapeB: NSNumber?
 
 }

@@ -10,8 +10,11 @@
         <attribute name="pointsB" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="pointsG" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="pointsR" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="shapeB" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="shapeG" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="shapeR" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Colors" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Colors" positionX="-63" positionY="-18" width="128" height="225"/>
     </elements>
 </model>

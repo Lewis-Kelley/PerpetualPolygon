@@ -18,9 +18,9 @@
 		F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */; };
 		F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */; };
 		F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */; };
-		F6468AA31D5537F200510AB6 /* Colors+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */; };
-		F6468AA41D5537F200510AB6 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA21D5537F200510AB6 /* Colors.swift */; };
 		F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA51D55389200510AB6 /* MenuViewController.swift */; };
+		F6468AA91D55563500510AB6 /* Colors+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA71D55563500510AB6 /* Colors+CoreDataProperties.swift */; };
+		F6468AAA1D55563500510AB6 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA81D55563500510AB6 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +37,9 @@
 		F6121E111D2AD56A00CF7F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		F6468A9F1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PerpetualPolygonModel.xcdatamodel; sourceTree = "<group>"; };
-		F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Colors+CoreDataProperties.swift"; path = "../Colors+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F6468AA21D5537F200510AB6 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = ../Colors.swift; sourceTree = "<group>"; };
 		F6468AA51D55389200510AB6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		F6468AA71D55563500510AB6 /* Colors+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colors+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6468AA81D55563500510AB6 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 				F610FFE81D4176DF009F4EC7 /* Platform.swift */,
 				62B5AB231D45DC9B008E7103 /* Point.swift */,
 				F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */,
-				F6468AA11D5537F200510AB6 /* Colors+CoreDataProperties.swift */,
-				F6468AA21D5537F200510AB6 /* Colors.swift */,
+				F6468AA71D55563500510AB6 /* Colors+CoreDataProperties.swift */,
+				F6468AA81D55563500510AB6 /* Colors.swift */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -164,15 +164,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */,
+				F6468AAA1D55563500510AB6 /* Colors.swift in Sources */,
 				F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */,
-				F6468AA41D5537F200510AB6 /* Colors.swift in Sources */,
+				F6468AA91D55563500510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
 				F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */,
 				F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */,
 				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
-				F6468AA31D5537F200510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
