@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Platform {
-    let STENCIL_RADIUS: CGFloat = 500
+    let STENCIL_RADIUS: CGFloat = 200
     let TOLERANCE:CGFloat = 0.001
     let SPEED:Double = 2.0 * M_PI / 1.0
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely

@@ -21,7 +21,7 @@ class Point {
     var img = SKShapeNode()
     let angle : Double
     
-    init(scene : SKScene, sides : Int) {
+    init(scene : SKScene, sides : Int, color: UIColor) {
         self.sides = sides
         self.scene = scene
         self.pos = Int(arc4random_uniform(UInt32(sides)))
@@ -34,7 +34,7 @@ class Point {
         let Y = Double(CGRectGetMidY(scene.frame)) + (radius * sin(angle))
         img = SKShapeNode(circleOfRadius: 15)
         img.position = CGPoint(x: X, y: Y)
-        img.fillColor = SKColor.blueColor()
+        img.fillColor = color
         img.strokeColor = SKColor.blackColor()
         img.zPosition = 1.1
         img.lineWidth = 5

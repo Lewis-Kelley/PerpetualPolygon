@@ -11,6 +11,7 @@ import CoreData
 
 class MenuViewController: UIViewController {
     let SHOW_OPTIONS_SEGUE = "MainToOptions"
+    let SHOW_GAME_SEGUE = "MainToGame"
     
     var managedObjectContext: NSManagedObjectContext?
 
@@ -32,9 +33,11 @@ class MenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        print("Starting segue \(segue.identifier)")
+
         if segue.identifier == SHOW_OPTIONS_SEGUE {
             (segue.destinationViewController as! OptionsViewController).managedObjectContext = managedObjectContext
+        } else if segue.identifier == SHOW_GAME_SEGUE {
+            (segue.destinationViewController as! GameViewController).colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
         }
     }
 

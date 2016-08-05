@@ -9,7 +9,9 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {    
+class GameViewController: UIViewController {
+    var colors: Colors?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,8 @@ class GameViewController: UIViewController {
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
+            
+            scene.colors = colors
             
             skView.presentScene(scene)
         }

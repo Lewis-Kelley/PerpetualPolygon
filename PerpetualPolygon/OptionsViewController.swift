@@ -64,6 +64,7 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
             colors = NSEntityDescription.insertNewObjectForEntityForName("Colors", inManagedObjectContext: moc!) as! Colors
             
             // Assign defaults
+            try! moc?.save()
         } else {
             colors = frc.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! Colors
         }
@@ -143,7 +144,6 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        print("Starting segue \(segue.identifier)")
         if segue.identifier == SHOW_MENU_SEGUE {
             saveColors()
             (segue.destinationViewController as! MenuViewController).managedObjectContext = managedObjectContext

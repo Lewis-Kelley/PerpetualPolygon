@@ -22,39 +22,18 @@ class GameScene: SKScene {
     let CENTER_SHAPE_RADIUS: CGFloat = 100.0
     let PLATFORM_SHAPE_RADIUS: CGFloat = 120.0
     
+    var colors: Colors?
     var platform: Platform?
     var points : [Point?] = []
     var sides = 5
     var life = 20
     
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-//        myLabel.text = "Hello, World!"
-//        myLabel.fontSize = 45
-//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-//        self.addChild(myLabel)
         
-        /* Draw Polygon */
-//        let centerShape = SKSpriteNode(imageNamed: "hexagon.jpg")
-//        centerShape.xScale = POLYGON_SIZE_RATIO
-//        centerShape.yScale = centerShape.xScale
-//        centerShape.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
-//        centerShape.zPosition = 0.0 //Z pos defines display order
-//        
-//        self.addChild(centerShape)
-//        
-        /* Draw platform */
-//        platform = SKShapeNode(rect:
-//            CGRect(x: -PLATFORM_W / 2.0,
-//            y:  -PLATFORM_H / 2.0,
-//            width: PLATFORM_W,
-//            height: PLATFORM_H))
+        backgroundColor = UIColor(colorLiteralRed: Float(colors!.backgdR!), green: Float(colors!.backgdG!), blue: Float(colors!.backgdB!), alpha: 1.0)
         
-        backgroundColor = SKColor.lightGrayColor()
-        
-        platform = Platform(scene: self, sides: sides, fillCol: SKColor.lightGrayColor(), zPos: 1.0)
-        points.append(Point(scene: self, sides: sides))
+        platform = Platform(scene: self, sides: sides, fillCol: UIColor(colorLiteralRed: Float(colors!.backgdR!), green: Float(colors!.backgdG!), blue: Float(colors!.backgdB!), alpha: 1.0), zPos: 1.0)
+        points.append(Point(scene: self, sides: sides, color: UIColor(colorLiteralRed: Float(colors!.pointsR!), green: Float(colors!.pointsG!), blue: Float(colors!.pointsB!), alpha: 1.0)))
         
         /* Create center shape and platform shape */
         let startTheta = CGFloat(M_PI  * (0.5 - 1.0 / Double(sides))) // ([Pi / 2] - [2 * Pi] / [2 * sides])
@@ -81,7 +60,7 @@ class GameScene: SKScene {
         
         let platformShape = SKShapeNode(path: platformPath)
         platformShape.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
-        platformShape.fillColor = SKColor.redColor()
+        platformShape.fillColor = UIColor(colorLiteralRed: Float(colors!.platformR!), green: Float(colors!.platformG!), blue: Float(colors!.platformB!), alpha: 1.0)
         platformShape.lineWidth = 0.0
         platformShape.zPosition = 0.0
         
@@ -154,7 +133,7 @@ class GameScene: SKScene {
     }
     
     func spawn() {
-        points.append(Point(scene: self, sides: sides))
+        points.append(Point(scene: self, sides: sides, color: UIColor(colorLiteralRed: Float(colors!.pointsR!), green: Float(colors!.pointsG!), blue: Float(colors!.pointsB!), alpha: 1.0)))
         self.spawning = false
     }
 }
