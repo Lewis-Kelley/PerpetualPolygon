@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292BCE5FD5DDFF5AD6EC38F9 /* Pods_PerpetualPolygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5885AD64D0EB35E665F04BCA /* Pods_PerpetualPolygon.framework */; };
+		628198631D593F69006B0ADA /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198621D593F69006B0ADA /* Highscore.swift */; };
+		628198651D5945D0006B0ADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628198641D5945D0006B0ADA /* GoogleService-Info.plist */; };
+		628198671D594695006B0ADA /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198661D594695006B0ADA /* HighscoreViewController.swift */; };
 		62B5AB241D45DC9B008E7103 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5AB231D45DC9B008E7103 /* Point.swift */; };
 		F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610FFE81D4176DF009F4EC7 /* Platform.swift */; };
 		F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */; };
@@ -24,7 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5885AD64D0EB35E665F04BCA /* Pods_PerpetualPolygon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerpetualPolygon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerpetualPolygon.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon.release.xcconfig"; sourceTree = "<group>"; };
+		628198621D593F69006B0ADA /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
+		628198641D5945D0006B0ADA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		628198661D594695006B0ADA /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreViewController.swift; sourceTree = "<group>"; };
 		62B5AB231D45DC9B008E7103 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerpetualPolygon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon.debug.xcconfig"; sourceTree = "<group>"; };
 		F610FFE81D4176DF009F4EC7 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		F6121DFE1D2AD56A00CF7F2D /* PerpetualPolygon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerpetualPolygon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,17 +57,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292BCE5FD5DDFF5AD6EC38F9 /* Pods_PerpetualPolygon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		961DF7154A04DFA95E60D0A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5885AD64D0EB35E665F04BCA /* Pods_PerpetualPolygon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6121DF51D2AD56900CF7F2D = {
 			isa = PBXGroup;
 			children = (
 				F6121E001D2AD56A00CF7F2D /* PerpetualPolygon */,
 				F6121DFF1D2AD56A00CF7F2D /* Products */,
+				F8E16E2C539CC4381B3FEE52 /* Pods */,
+				961DF7154A04DFA95E60D0A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +93,7 @@
 		F6121E001D2AD56A00CF7F2D /* PerpetualPolygon */ = {
 			isa = PBXGroup;
 			children = (
+				628198641D5945D0006B0ADA /* GoogleService-Info.plist */,
 				F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */,
 				F6121E031D2AD56A00CF7F2D /* GameScene.sks */,
 				F6468AA51D55389200510AB6 /* MenuViewController.swift */,
@@ -87,8 +109,19 @@
 				F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */,
 				F6468AA71D55563500510AB6 /* Colors+CoreDataProperties.swift */,
 				F6468AA81D55563500510AB6 /* Colors.swift */,
+				628198621D593F69006B0ADA /* Highscore.swift */,
+				628198661D594695006B0ADA /* HighscoreViewController.swift */,
 			);
 			path = PerpetualPolygon;
+			sourceTree = "<group>";
+		};
+		F8E16E2C539CC4381B3FEE52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */,
+				5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,9 +131,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6121E141D2AD56A00CF7F2D /* Build configuration list for PBXNativeTarget "PerpetualPolygon" */;
 			buildPhases = (
+				38D76F0BF181857C4904568E /* [CP] Check Pods Manifest.lock */,
 				F6121DFA1D2AD56A00CF7F2D /* Sources */,
 				F6121DFB1D2AD56A00CF7F2D /* Frameworks */,
 				F6121DFC1D2AD56A00CF7F2D /* Resources */,
+				7C15F1DD8373907B5210D533 /* [CP] Embed Pods Frameworks */,
+				66297AC8684A016E19F57C96 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -151,12 +187,61 @@
 			files = (
 				F6121E041D2AD56A00CF7F2D /* GameScene.sks in Resources */,
 				F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */,
+				628198651D5945D0006B0ADA /* GoogleService-Info.plist in Resources */,
 				F6121E0D1D2AD56A00CF7F2D /* Assets.xcassets in Resources */,
 				F6121E0B1D2AD56A00CF7F2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38D76F0BF181857C4904568E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66297AC8684A016E19F57C96 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C15F1DD8373907B5210D533 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F6121DFA1D2AD56A00CF7F2D /* Sources */ = {
@@ -166,11 +251,13 @@
 				F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */,
 				F6468AAA1D55563500510AB6 /* Colors.swift in Sources */,
 				F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */,
+				628198671D594695006B0ADA /* HighscoreViewController.swift in Sources */,
 				F6468AA91D55563500510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
 				F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */,
+				628198631D593F69006B0ADA /* Highscore.swift in Sources */,
 				F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */,
 				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
 			);
@@ -285,6 +372,7 @@
 		};
 		F6121E151D2AD56A00CF7F2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;
@@ -297,6 +385,7 @@
 		};
 		F6121E161D2AD56A00CF7F2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;

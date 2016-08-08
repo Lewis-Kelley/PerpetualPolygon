@@ -120,6 +120,13 @@ class GameScene: SKScene {
         points.removeAtIndex(0)
         self.life = self.life - 1
         self.lifeLabel?.text = "\(self.life)"
+        if (self.life <= 0) {
+            self.paused = true
+            // Save the highscore to firebase
+            
+            
+            
+        }
     }
     
     func delay(delay:Double, closure:()->()) {
