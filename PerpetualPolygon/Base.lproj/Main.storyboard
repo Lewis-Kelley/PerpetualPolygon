@@ -9,7 +9,7 @@
         <!--High Scores-->
         <scene sceneID="XBx-bo-sVl">
             <objects>
-                <viewController id="BoQ-B4-LK7" userLabel="High Scores" customClass="HighscoreViewController" customModule="PerpetualPolygon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BoQ-B4-LK7" userLabel="High Scores" customClass="HighscoreTableViewController" customModule="PerpetualPolygon" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qAA-2I-hzf"/>
                         <viewControllerLayoutGuide type="bottom" id="5AP-AL-3Uk"/>
@@ -28,8 +28,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htO-nx-j2q">
-                                <rect key="frame" x="207" y="20" width="186" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htO-nx-j2q">
+                                <rect key="frame" x="206.5" y="20" width="187" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="slk-VS-ws3"/>
@@ -39,7 +39,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVd-rI-Xjr">
-                                <rect key="frame" x="393" y="20" width="187" height="50"/>
+                                <rect key="frame" x="393" y="20" width="186.5" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="F2J-ev-yvu"/>
@@ -49,7 +49,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSD-o2-FNf">
-                                <rect key="frame" x="20" y="20" width="187" height="50"/>
+                                <rect key="frame" x="20" y="20" width="186.5" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cDN-Cr-sfN"/>

@@ -25,8 +25,8 @@ class GameScene: SKScene {
     var colors: Colors!
     var platform: Platform?
     var points : [Point?] = []
-    var sides = 5
-    var life = 20
+    var sides = 6
+    var life = 5
     
     override func didMoveToView(view: SKView) {
         
@@ -106,7 +106,7 @@ class GameScene: SKScene {
         posLbl!.text = "Pos: \((platform?.pos)!)"
         for point in points {
             point?.update()
-            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 1) % sides) {
+            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 0) % sides) {
                 self.scene?.removeChildrenInArray([point!.img])
                 self.points.removeAtIndex(0)
             }

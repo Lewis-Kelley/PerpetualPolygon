@@ -19,13 +19,14 @@ class Point {
     let sides : Int
     let pos : Int // The side that the point will come from.
     var img = SKShapeNode()
-    let angle : Double
+    var angle : Double
     
     init(scene : SKScene, sides : Int, color: UIColor) {
         self.sides = sides
         self.scene = scene
         self.pos = Int(arc4random_uniform(UInt32(sides)))
         self.angle = (Double(self.pos) * Double(360 / Double(sides))) * (2 * 3.14 / 360)
+        self.angle = self.angle + (3.14/2)
         
         centerX = Double(CGRectGetMidX(scene.frame))
         centerY = Double(CGRectGetMidY(scene.frame))

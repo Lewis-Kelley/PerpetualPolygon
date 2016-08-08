@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class HighscoreViewController : UIViewController {
+class HighscoreViewController : UITableViewController {
     
+    let scoreCellIdentifier = "HighScoreCell"
 }

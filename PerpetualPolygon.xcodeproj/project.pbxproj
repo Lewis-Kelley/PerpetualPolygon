@@ -10,7 +10,7 @@
 		292BCE5FD5DDFF5AD6EC38F9 /* Pods_PerpetualPolygon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5885AD64D0EB35E665F04BCA /* Pods_PerpetualPolygon.framework */; };
 		628198631D593F69006B0ADA /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198621D593F69006B0ADA /* Highscore.swift */; };
 		628198651D5945D0006B0ADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628198641D5945D0006B0ADA /* GoogleService-Info.plist */; };
-		628198671D594695006B0ADA /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198661D594695006B0ADA /* HighscoreViewController.swift */; };
+		628198671D594695006B0ADA /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198661D594695006B0ADA /* HighscoreTableViewController.swift */; };
 		62B5AB241D45DC9B008E7103 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5AB231D45DC9B008E7103 /* Point.swift */; };
 		F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610FFE81D4176DF009F4EC7 /* Platform.swift */; };
 		F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */; };
@@ -32,7 +32,7 @@
 		5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerpetualPolygon.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon.release.xcconfig"; sourceTree = "<group>"; };
 		628198621D593F69006B0ADA /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		628198641D5945D0006B0ADA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		628198661D594695006B0ADA /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreViewController.swift; sourceTree = "<group>"; };
+		628198661D594695006B0ADA /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		62B5AB231D45DC9B008E7103 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerpetualPolygon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon.debug.xcconfig"; sourceTree = "<group>"; };
 		F610FFE81D4176DF009F4EC7 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 				F6468AA71D55563500510AB6 /* Colors+CoreDataProperties.swift */,
 				F6468AA81D55563500510AB6 /* Colors.swift */,
 				628198621D593F69006B0ADA /* Highscore.swift */,
-				628198661D594695006B0ADA /* HighscoreViewController.swift */,
+				628198661D594695006B0ADA /* HighscoreTableViewController.swift */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 				F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */,
 				F6468AAA1D55563500510AB6 /* Colors.swift in Sources */,
 				F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */,
-				628198671D594695006B0ADA /* HighscoreViewController.swift in Sources */,
+				628198671D594695006B0ADA /* HighscoreTableViewController.swift in Sources */,
 				F6468AA91D55563500510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
