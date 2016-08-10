@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Firebase
 
 class GameScene: SKScene {
     
@@ -27,6 +28,8 @@ class GameScene: SKScene {
     var points : [Point?] = []
     var sides = 6
     var life = 5
+    
+    let highscoreRef = FIRDatabase.database().reference().child("highscores")
     
     override func didMoveToView(view: SKView) {
         
@@ -103,12 +106,13 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        posLbl!.text = "Pos: \((platform?.pos)!)"
+        posLbl!.text = "Score: \((self.score))"
         for point in points {
             point?.update()
             if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 0) % sides) {
                 self.scene?.removeChildrenInArray([point!.img])
                 self.points.removeAtIndex(0)
+                self.score += 1
             }
         }
         if (!self.spawning) {
@@ -123,10 +127,12 @@ class GameScene: SKScene {
         if (self.life <= 0) {
             self.paused = true
             // Save the highscore to firebase
-            
-            
-            
+            saveHighScore()
         }
+    }
+    
+    func saveHighScore() {
+        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Larry", difficulty: "Easy").getSnapshotValue())
     }
     
     func delay(delay:Double, closure:()->()) {
