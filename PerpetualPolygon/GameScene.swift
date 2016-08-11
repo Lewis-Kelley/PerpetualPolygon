@@ -9,6 +9,8 @@
 import SpriteKit
 import Firebase
 
+let IPAD = UIDevice.currentDevice().model == "iPad"
+
 class GameScene: SKScene {
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
     let PLATFORM_W:CGFloat = 145.0
@@ -17,13 +19,18 @@ class GameScene: SKScene {
     let CENTER_SHAPE_RADIUS: CGFloat = 100.0
     let PLATFORM_SHAPE_RADIUS: CGFloat = 120.0
     let BOX_WIDTH_FACTOR: CGFloat = 1.0 / 5.0 //Fraction of the width of the screen to be used for the HUD boxes
-    let BOX_HEIGHT_FACTOR: CGFloat = 1.0 / 4.0 //Fraction of the height of the screen to be used for the HUD boxes
+    let BOX_HEIGHT_FACTOR: CGFloat = 1.0 / (IPAD ? 5.0 : 4.0) //Fraction of the height of the screen to be used for the HUD boxes
     let BOX_LINE_WIDTH: CGFloat = 5.0
     let BOX_CORNER_RADIUS: CGFloat = 10.0
+    let TEXT_BUFFER: CGFloat = 5.0 //Distance text starts from borders
+    let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
+    let FONT_ID = "Arial"
     
     var spawning = false
-    var pointLabel : SKLabelNode?
+    var scoreLbl: SKLabelNode!
+    var hScoreLbl: SKLabelNode!
     var score = 0
+    var highScore = 0
     var lifeLabel : SKLabelNode?
     var tmpLbl: SKLabelNode? //TEMP
     
@@ -55,24 +62,34 @@ class GameScene: SKScene {
         
         /* Create life label */
         
-        self.lifeLabel = SKLabelNode(fontNamed: "Arial")
+        self.lifeLabel = SKLabelNode(fontNamed: FONT_ID)
         self.lifeLabel!.text = "\(self.life)"
-        self.lifeLabel!.fontSize = 20
-        self.lifeLabel!.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        self.lifeLabel!.fontSize = FONT_SIZE
+        self.lifeLabel!.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame) - FONT_SIZE / 3.0)
         self.lifeLabel!.zPosition = 101.00
         addChild(self.lifeLabel!)
         
-        self.tmpLbl = SKLabelNode(fontNamed: "Arial")
+        /* Create score labels */
+        
+        hScoreLbl = SKLabelNode(fontNamed: FONT_ID)
+        hScoreLbl.fontSize = FONT_SIZE
+        hScoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
+        hScoreLbl.horizontalAlignmentMode = .Left
+        hScoreLbl.zPosition = 101.0
+        addChild(hScoreLbl)
+        
+        scoreLbl = SKLabelNode(fontNamed: FONT_ID)
+        scoreLbl.fontSize = FONT_SIZE
+        scoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR + 3.0 * TEXT_BUFFER)
+        scoreLbl.horizontalAlignmentMode = .Left
+        scoreLbl.zPosition = 101.0
+        addChild(scoreLbl)
+        
+        self.tmpLbl = SKLabelNode(fontNamed: FONT_ID)
         self.tmpLbl!.fontSize = 20
         self.tmpLbl!.position = CGPoint(x: CGRectGetMinX(self.frame) + 50, y: CGRectGetMidY(self.frame))
         self.tmpLbl!.zPosition = 101.00
-        addChild(self.tmpLbl!)
-        
-        self.pointLabel = SKLabelNode(fontNamed: "Arial")
-        self.pointLabel?.text = "\(self.score)"
-        self.pointLabel!.fontSize = 20
-        self.pointLabel!.position = CGPoint(x: 0,y: 0)
-        addChild(self.pointLabel!)
+        //addChild(self.tmpLbl!)
         
     }
     
@@ -93,6 +110,8 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         tmpLbl!.text = "Score: \((self.score))"
+        hScoreLbl.text = "High: \(highScore)"
+        scoreLbl.text = "Score: \(score)"
         for point in points {
             point?.update()
             if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 0) % sides) {
@@ -118,7 +137,7 @@ class GameScene: SKScene {
     }
     
     func saveHighScore() {
-        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Larry", difficulty: "Easy").getSnapshotValue())
+        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Larry", difficulty: "Easy").getSnapshotValue()) //Why Larry?
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -180,7 +199,7 @@ class GameScene: SKScene {
             rect: CGRect(x: CGRectGetMinX(frame) - BOX_LINE_WIDTH,
                 y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR,
                 width: frame.width * BOX_WIDTH_FACTOR,
-                height: frame.height * BOX_HEIGHT_FACTOR),
+                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH),
             cornerRadius: BOX_CORNER_RADIUS)
         
         boxConfig(leftBox)
@@ -193,7 +212,7 @@ class GameScene: SKScene {
             rect: CGRect(x: CGRectGetMaxX(frame) - frame.width * BOX_WIDTH_FACTOR,
                 y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR,
                 width: frame.width * BOX_WIDTH_FACTOR + BOX_LINE_WIDTH,
-                height: frame.height * BOX_HEIGHT_FACTOR),
+                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH),
             cornerRadius: BOX_CORNER_RADIUS)
         
         boxConfig(rightBox)
