@@ -9,8 +9,6 @@
 import SpriteKit
 import Firebase
 
-let IPAD = UIDevice.currentDevice().model == "iPad"
-
 class GameScene: SKScene {
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
     let PLATFORM_W:CGFloat = 145.0
@@ -26,19 +24,26 @@ class GameScene: SKScene {
     let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
     let FONT_ID = "Arial"
     
+    // Status variables
     var spawning = false
+    var score = 0
+    var life = 5
+    var streak = 0
+    
+    // Labels
+    var lifeLabel : SKLabelNode?
     var scoreLbl: SKLabelNode!
     var hScoreLbl: SKLabelNode!
-    var score = 0
-    var highScore = 0
-    var lifeLabel : SKLabelNode?
-    var tmpLbl: SKLabelNode? //TEMP
+    var diffLbl: SKLabelNode!
+    var pptLbl: SKLabelNode!
     
+    // Unchanging one game starts or containers
     var colors: Colors!
     var platform: Platform?
     var points : [Point?] = []
     var sides = 6
-    var life = 5
+    var diff: String?
+    var highScore = 0
     
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
     
@@ -62,12 +67,12 @@ class GameScene: SKScene {
         
         /* Create life label */
         
-        self.lifeLabel = SKLabelNode(fontNamed: FONT_ID)
-        self.lifeLabel!.text = "\(self.life)"
-        self.lifeLabel!.fontSize = FONT_SIZE
-        self.lifeLabel!.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame) - FONT_SIZE / 3.0)
-        self.lifeLabel!.zPosition = 101.00
-        addChild(self.lifeLabel!)
+        lifeLabel = SKLabelNode(fontNamed: FONT_ID)
+        lifeLabel!.text = "\(life)"
+        lifeLabel!.fontSize = FONT_SIZE
+        lifeLabel!.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame) - FONT_SIZE / 3.0)
+        lifeLabel!.zPosition = 101.00
+        addChild(lifeLabel!)
         
         /* Create score labels */
         
@@ -85,12 +90,22 @@ class GameScene: SKScene {
         scoreLbl.zPosition = 101.0
         addChild(scoreLbl)
         
-        self.tmpLbl = SKLabelNode(fontNamed: FONT_ID)
-        self.tmpLbl!.fontSize = 20
-        self.tmpLbl!.position = CGPoint(x: CGRectGetMinX(self.frame) + 50, y: CGRectGetMidY(self.frame))
-        self.tmpLbl!.zPosition = 101.00
-        //addChild(self.tmpLbl!)
+        /* Create difficulty and powerpoint labels */
         
+        diffLbl = SKLabelNode(fontNamed: FONT_ID)
+        diffLbl.fontSize = FONT_SIZE
+        diffLbl.position = CGPoint(x: CGRectGetMaxX(frame) - TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
+        diffLbl.horizontalAlignmentMode = .Right
+        diffLbl.zPosition = 101.0
+        diffLbl.text = diff
+        addChild(diffLbl)
+
+        pptLbl = SKLabelNode(fontNamed: FONT_ID)
+        pptLbl.fontSize = FONT_SIZE
+        pptLbl.position = CGPoint(x: CGRectGetMaxX(frame) - TEXT_BUFFER, y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR + 3.0 * TEXT_BUFFER)
+        pptLbl.horizontalAlignmentMode = .Right
+        pptLbl.zPosition = 101.0
+        addChild(pptLbl)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -109,15 +124,17 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        tmpLbl!.text = "Score: \((self.score))"
         hScoreLbl.text = "High: \(highScore)"
         scoreLbl.text = "Score: \(score)"
+        pptLbl.text = "Streak: \(streak)" // TODO: Something fancy to show how close the player is getting to a ppt
+        
         for point in points {
             point?.update()
             if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 0) % sides) {
                 self.scene?.removeChildrenInArray([point!.img])
                 self.points.removeAtIndex(0)
                 self.score += 1
+                self.streak += 1
             }
         }
         if (!self.spawning) {
@@ -128,6 +145,7 @@ class GameScene: SKScene {
     func removeFromArray(pointToFind : Point) {
         points.removeAtIndex(0)
         self.life = self.life - 1
+        self.streak = 0
         self.lifeLabel?.text = "\(self.life)"
         if (self.life <= 0) {
             self.paused = true
@@ -199,8 +217,7 @@ class GameScene: SKScene {
             rect: CGRect(x: CGRectGetMinX(frame) - BOX_LINE_WIDTH,
                 y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR,
                 width: frame.width * BOX_WIDTH_FACTOR,
-                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH),
-            cornerRadius: BOX_CORNER_RADIUS)
+                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH))
         
         boxConfig(leftBox)
         
@@ -212,8 +229,7 @@ class GameScene: SKScene {
             rect: CGRect(x: CGRectGetMaxX(frame) - frame.width * BOX_WIDTH_FACTOR,
                 y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR,
                 width: frame.width * BOX_WIDTH_FACTOR + BOX_LINE_WIDTH,
-                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH),
-            cornerRadius: BOX_CORNER_RADIUS)
+                height: frame.height * BOX_HEIGHT_FACTOR + BOX_LINE_WIDTH))
         
         boxConfig(rightBox)
         

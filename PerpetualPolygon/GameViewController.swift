@@ -11,6 +11,7 @@ import SpriteKit
 
 class GameViewController: UIViewController {
     var colors: Colors?
+    var diff: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             
             scene.colors = colors
+            
+            setDiff(scene)
             
             skView.presentScene(scene)
         }
@@ -52,5 +55,27 @@ class GameViewController: UIViewController {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func setDiff(scene: GameScene) {
+        switch diff! {
+        case 0:
+            scene.sides = 3
+            scene.diff = "Easy"
+        case 1:
+            scene.sides = 4
+            scene.diff = "Medium"
+        case 2:
+            scene.sides = 5
+            scene.diff = "Hard"
+        case 3:
+            scene.sides = 6
+            scene.diff = "Extreme"
+        case 4:
+            scene.sides = 7
+            scene.diff = "Impossible"
+        default:
+            print("ERROR: Unrecognized difficulty number \(diff)")
+        }
     }
 }

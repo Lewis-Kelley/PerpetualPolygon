@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import Firebase
 
+let IPAD = UIDevice.currentDevice().model == "iPad"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

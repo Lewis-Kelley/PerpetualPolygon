@@ -148,29 +148,35 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TtQ-ZB-ONh">
                                         <rect key="frame" x="300" y="0.0" width="300" height="296"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nP-oY-58L">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nP-oY-58L">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Increase Difficulty">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="adjDiff:" destination="eaP-Ch-pAD" eventType="touchUpInside" id="cws-K7-iqp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-Jr-pXR">
                                                 <rect key="frame" x="0.0" y="99" width="300" height="98"/>
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Play Game">
+                                                <state key="normal">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="BV1-FR-VrT" kind="show" identifier="MainToGame" id="mZx-rF-h1z"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdJ-gR-RJx">
+                                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdJ-gR-RJx">
                                                 <rect key="frame" x="0.0" y="197" width="300" height="99"/>
                                                 <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Decrease Difficulty">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="adjDiff:" destination="eaP-Ch-pAD" eventType="touchUpInside" id="VbR-pw-CO9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,6 +257,14 @@
                             <constraint firstItem="5y4-Lw-5tz" firstAttribute="top" secondItem="ZPf-cf-p6D" secondAttribute="bottom" id="zqt-aw-VOS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="diffDownBt" destination="bdJ-gR-RJx" id="oAA-Mc-6wv"/>
+                        <outlet property="diffUpBt" destination="1nP-oY-58L" id="fGP-tW-c7F"/>
+                        <outlet property="hScoresBt" destination="nFZ-cx-sv3" id="o9D-35-LPe"/>
+                        <outlet property="optsBt" destination="KFG-Vg-Xv6" id="ycK-Wg-Cf2"/>
+                        <outlet property="playBt" destination="J0r-Jr-pXR" id="WRm-Za-Nmh"/>
+                        <outlet property="titleLbl" destination="WxB-QQ-u9Y" id="hsM-O3-Zol"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0NO-zW-Nxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

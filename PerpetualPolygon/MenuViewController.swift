@@ -12,13 +12,35 @@ import CoreData
 class MenuViewController: UIViewController {
     let SHOW_OPTIONS_SEGUE = "MainToOptions"
     let SHOW_GAME_SEGUE = "MainToGame"
+    let MAX_DIFF = 4
+    let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
+    let TITLE_FONT_SIZE: CGFloat = IPAD ? 68.0 : 34.0
+    
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var hScoresBt: UIButton!
+    @IBOutlet weak var optsBt: UIButton!
+    @IBOutlet weak var diffUpBt: UIButton!
+    @IBOutlet weak var diffDownBt: UIButton!
+    @IBOutlet weak var playBt: UIButton!
     
     var managedObjectContext: NSManagedObjectContext?
+    var diff: Int = 0 //0 = easiest, MAX_DIFF = hardest
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if IPAD {
+            titleLbl.font = titleLbl.font.fontWithSize(TITLE_FONT_SIZE)
+            
+            let stdFont = hScoresBt.titleLabel?.font.fontWithSize(FONT_SIZE)
+            hScoresBt.titleLabel?.font = stdFont
+            optsBt.titleLabel?.font = stdFont
+            diffUpBt.titleLabel?.font = stdFont
+            diffDownBt.titleLabel?.font = stdFont
+            playBt.titleLabel?.font = stdFont
+        }
+        
+        playBt.setTitle("Level \(diff): GO!", forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +59,21 @@ class MenuViewController: UIViewController {
         if segue.identifier == SHOW_OPTIONS_SEGUE {
             (segue.destinationViewController as! OptionsViewController).managedObjectContext = managedObjectContext
         } else if segue.identifier == SHOW_GAME_SEGUE {
-            (segue.destinationViewController as! GameViewController).colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
+            let gameVC = segue.destinationViewController as! GameViewController
+            gameVC.colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
+            gameVC.diff = diff
         }
     }
 
+    @IBAction func adjDiff(sender: AnyObject) {
+        diff += sender.tag
+        
+        if diff < 0 {
+            diff = 0
+        } else if diff > MAX_DIFF {
+            diff = MAX_DIFF
+        } else {
+            playBt.setTitle("Level \(diff): GO!", forState: .Normal)
+        }
+    }
 }
