@@ -39,7 +39,7 @@ class GameScene: SKScene {
     
     // Unchanging one game starts or containers
     var colors: Colors!
-    var platform: Platform?
+    var platform: Platform!
     var points : [Point?] = []
     var sides = 6
     var diff: String?
@@ -48,7 +48,6 @@ class GameScene: SKScene {
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
     
     override func didMoveToView(view: SKView) {
-        
         backgroundColor = colors.backgdColor()
         
         platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0)
@@ -99,7 +98,7 @@ class GameScene: SKScene {
         diffLbl.zPosition = 101.0
         diffLbl.text = diff
         addChild(diffLbl)
-
+        
         pptLbl = SKLabelNode(fontNamed: FONT_ID)
         pptLbl.fontSize = FONT_SIZE
         pptLbl.position = CGPoint(x: CGRectGetMaxX(frame) - TEXT_BUFFER, y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR + 3.0 * TEXT_BUFFER)
@@ -109,7 +108,9 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
+        /* Called when a touch begins */
+        
+        //platform.getPowerUp(platform.pwrUp == .None ? .Doubled : .None) //For testing
         
         for touch in touches {
             let location = touch.locationInNode(self)
@@ -121,7 +122,7 @@ class GameScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         platform?.update(false, pressedR: false, resetFirstCall: false)
     }
-   
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         hScoreLbl.text = "High: \(highScore)"
@@ -130,7 +131,7 @@ class GameScene: SKScene {
         
         for point in points {
             point?.update()
-            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && (point?.pos)! == ((platform?.pos)! + 0) % sides) {
+            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && platform.pointDidCollide(point!)) {
                 self.scene?.removeChildrenInArray([point!.img])
                 self.points.removeAtIndex(0)
                 self.score += 1
@@ -176,14 +177,13 @@ class GameScene: SKScene {
     // MARK: HUD functions
     
     func makeCenterShapes() -> (SKShapeNode, SKShapeNode) {
-        let startTheta = CGFloat(M_PI  * (0.5 - 1.0 / Double(sides))) // ([Pi / 2] - [2 * Pi] / [2 * sides])
         let centerPath = CGPathCreateMutable()
         let platformPath = CGPathCreateMutable()
+        var theta = CGFloat(M_PI  * (0.5 - 1.0 / Double(sides))) // ([Pi / 2] - [2 * Pi] / [2 * sides])
         
-        CGPathMoveToPoint(centerPath, nil, CENTER_SHAPE_RADIUS * cos(startTheta), CENTER_SHAPE_RADIUS * sin(startTheta))
-        CGPathMoveToPoint(platformPath, nil, PLATFORM_SHAPE_RADIUS * cos(startTheta), PLATFORM_SHAPE_RADIUS * sin(startTheta))
+        CGPathMoveToPoint(centerPath, nil, CENTER_SHAPE_RADIUS * cos(theta), CENTER_SHAPE_RADIUS * sin(theta))
+        CGPathMoveToPoint(platformPath, nil, PLATFORM_SHAPE_RADIUS * cos(theta), PLATFORM_SHAPE_RADIUS * sin(theta))
         
-        var theta = startTheta
         for _ in 1...sides {
             theta += 2 * CGFloat(M_PI) / CGFloat(sides)
             CGPathAddLineToPoint(centerPath, nil, CENTER_SHAPE_RADIUS * cos(theta), CENTER_SHAPE_RADIUS * sin(theta))
@@ -235,4 +235,9 @@ class GameScene: SKScene {
         
         return rightBox
     }
+}
+
+enum Powers {
+    case None
+    case Doubled
 }

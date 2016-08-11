@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 import Firebase
+import CoreData
 
 class HighscoreViewController : UITableViewController {
+    let SHOW_MENU_SEGUE = "ScoresToMain"
     
     let scoreCellIdentifier = "HighScoreCell"
     var highScores = [Highscore]()
+    var managedObjectContext: NSManagedObjectContext?
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,5 +93,16 @@ class HighscoreViewController : UITableViewController {
             }
         }
         self.tableView.reloadData()
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == SHOW_MENU_SEGUE {
+            (segue.destinationViewController as! MenuViewController).managedObjectContext = managedObjectContext
+        }
     }
 }

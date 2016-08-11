@@ -14,6 +14,7 @@ class Platform {
     let TOLERANCE:CGFloat = 0.001
     let SPEED:Double = 2.0 * M_PI / 1.0
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
+    let PWR_UP_TIME = 10.0
 
     var sides: Int
     var pos: Int { //The side of the polygon currently occupied by the center of the platform, starting from the top and proceeding ccw
@@ -53,36 +54,34 @@ class Platform {
     var prevAngle:CGFloat = 0.0
     var _tarAngle:CGFloat = 0.0
     
+    var scene: SKScene
+    var fillCol: SKColor
+    var zPos: CGFloat
+    
+    var pwrUpStart = NSDate()
+    
+    var pwrUp = Powers.None
+    
     init(scene:SKScene, sides:Int, fillCol:SKColor, zPos:CGFloat) {
+        self.scene = scene
         self.sides = sides
+        self.fillCol = fillCol
+        self.zPos = zPos
         
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, 0.0, 0.0)
-        CGPathAddLineToPoint(path, nil, -STENCIL_RADIUS
-            * cos(_getEdgeAngle()), STENCIL_RADIUS * sin(_getEdgeAngle()))
-        CGPathAddLineToPoint(path, nil, -STENCIL_RADIUS, -STENCIL_RADIUS)
-        CGPathAddLineToPoint(path, nil, STENCIL_RADIUS, -STENCIL_RADIUS)
-        CGPathAddLineToPoint(path, nil, STENCIL_RADIUS * cos(_getEdgeAngle()), STENCIL_RADIUS * sin(_getEdgeAngle()))
-        CGPathAddLineToPoint(path, nil, 0.0, 0.0)
-        
-        img = SKShapeNode(path: path)
-        img.position = CGPoint(x: CGRectGetMidX(scene.frame), y: CGRectGetMidY(scene.frame))
-        img.fillColor = fillCol
-        img.lineWidth = 0.0
-        img.zPosition = zPos
-        
-        scene.addChild(img)
+        makeImg()
     }
     
-    /* Used in init to make the stencil */
-    func _getEdgeAngle() -> CGFloat {
-        return CGFloat(M_PI) * (0.5 - 1 / CGFloat(sides)) // ([Pi / 2] - [2 * Pi] / [2 * sides])
-    }
+    /* Used to make the stencil */
     
     func _swapAngles() {
         let temp = _tarAngle
         _tarAngle = prevAngle
         prevAngle = temp
+    }
+    
+    // Returns the angle for the given vertex (vertex 0 = first vertex right of pos 0)
+    func _angleForVertex(vertex: Int) -> CGFloat {
+        return 2.0 * CGFloat(M_PI) * CGFloat(vertex) / CGFloat(sides) + CGFloat(M_PI) * (0.5 - 1 / CGFloat(sides)) // ([Pi / 2] - [2 * Pi] / [2 * sides])
     }
     
     /* The lowest valid angle value for a side, all others are this plus some number of 2 Pi / sides */
@@ -110,6 +109,33 @@ class Platform {
         }
         
         return _tarAngle
+    }
+    
+    func makeImg() {
+        scene.removeChildrenInArray([img])
+        
+        img = SKShapeNode(path: makeStencilPath())
+        img.position = CGPoint(x: CGRectGetMidX(scene.frame), y: CGRectGetMidY(scene.frame))
+        img.fillColor = fillCol
+        img.lineWidth = 0.0
+        img.zPosition = zPos
+        
+        scene.addChild(img)
+    }
+    
+    func makeStencilPath() -> CGPath {
+        let endPos = (pwrUp == .Doubled ? pos - 1 : pos) + sides
+        let path = CGPathCreateMutable()
+        CGPathMoveToPoint(path, nil, 0.0, 0.0)
+        
+        var curPos = pos + 1
+        while curPos <= endPos {
+            CGPathAddLineToPoint(path, nil, STENCIL_RADIUS * cos(_angleForVertex(curPos)), STENCIL_RADIUS * sin(_angleForVertex(curPos)))
+            curPos += 1
+        }
+        CGPathAddLineToPoint(path, nil, 0.0, 0.0)
+        
+        return path
     }
     
     func update(pressedL:Bool, pressedR:Bool, resetFirstCall:Bool) {
@@ -167,5 +193,41 @@ class Platform {
                 self.update(pressedL, pressedR: pressedR, resetFirstCall: false)
             }
         })]))
+    }
+    
+    func getPowerUp(pwr: Powers) {
+        if pwr != pwrUp {
+            switch pwrUp {
+            case .Doubled:
+                pwrUp = pwr
+                makeImg()
+                break
+            case .None:
+                break
+            }
+            
+            switch pwr {
+            case .Doubled:
+                pwrUp = pwr
+                makeImg()
+                break
+            case .None:
+                break
+            }
+        }
+        
+        pwrUpStart = NSDate()
+    }
+    
+    func pointDidCollide(pt: Point) -> Bool {
+        return pt.pos == pos || (pwrUp == .Doubled && pt.pos == pt.pos + 1)
+    }
+    
+    func ciel(num: Double) -> Int {
+        if num - Double(Int(num)) >= 0.5 {
+            return Int(num) + 1
+        }
+        
+        return Int(num)
     }
 }

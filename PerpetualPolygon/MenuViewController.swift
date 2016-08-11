@@ -12,6 +12,7 @@ import CoreData
 class MenuViewController: UIViewController {
     let SHOW_OPTIONS_SEGUE = "MainToOptions"
     let SHOW_GAME_SEGUE = "MainToGame"
+    let SHOW_SCORES_SEGUE = "MainToScores"
     let MAX_DIFF = 4
     let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
     let TITLE_FONT_SIZE: CGFloat = IPAD ? 68.0 : 34.0
@@ -62,7 +63,9 @@ class MenuViewController: UIViewController {
             let gameVC = segue.destinationViewController as! GameViewController
             gameVC.colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
             gameVC.diff = diff
-        }
+        }/* else if segue.identifier == SHOW_SCORES_SEGUE {
+            (segue.destinationViewController as! HighscoreViewController).managedObjectContext = managedObjectContext
+        }*/
     }
 
     @IBAction func adjDiff(sender: AnyObject) {
