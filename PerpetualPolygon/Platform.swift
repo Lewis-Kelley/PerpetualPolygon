@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Platform {
-    let STENCIL_RADIUS: CGFloat = 200
+    let STENCIL_RADIUS: CGFloat = 250
     let TOLERANCE:CGFloat = 0.001
     let SPEED:Double = 2.0 * M_PI / 1.0
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
@@ -50,7 +50,6 @@ class Platform {
     var img = SKShapeNode()
     
     var firstCall = true
-    var _sideFactor:Double?
     var prevAngle:CGFloat = 0.0
     var _tarAngle:CGFloat = 0.0
     
@@ -84,19 +83,6 @@ class Platform {
         return 2.0 * CGFloat(M_PI) * CGFloat(vertex) / CGFloat(sides) + CGFloat(M_PI) * (0.5 - 1 / CGFloat(sides)) // ([Pi / 2] - [2 * Pi] / [2 * sides])
     }
     
-    /* The lowest valid angle value for a side, all others are this plus some number of 2 Pi / sides */
-    func sideFactor(sides:Int) -> Double {
-        if _sideFactor == nil {
-            _sideFactor = M_PI / 2.0
-            
-            while _sideFactor! - (2.0 * M_PI / Double(sides)) > 0.0 {
-                _sideFactor! -= 2.0 * M_PI / Double(sides)
-            }
-        }
-
-        return _sideFactor!
-    }
-    
     func tarAngle() -> CGFloat {
         if abs(_tarAngle - img.zRotation) < TOLERANCE { //Already reached destination
             prevAngle = _tarAngle
@@ -114,21 +100,24 @@ class Platform {
     func makeImg() {
         scene.removeChildrenInArray([img])
         
+        let rot = img.zRotation
+        
         img = SKShapeNode(path: makeStencilPath())
         img.position = CGPoint(x: CGRectGetMidX(scene.frame), y: CGRectGetMidY(scene.frame))
         img.fillColor = fillCol
         img.lineWidth = 0.0
         img.zPosition = zPos
+        img.zRotation = rot
         
         scene.addChild(img)
     }
     
     func makeStencilPath() -> CGPath {
-        let endPos = (pwrUp == .Doubled ? pos - 1 : pos) + sides
+        let endPos = (pwrUp == .Doubled ? sides - 1 : sides)
         let path = CGPathCreateMutable()
         CGPathMoveToPoint(path, nil, 0.0, 0.0)
         
-        var curPos = pos + 1
+        var curPos = 1
         while curPos <= endPos {
             CGPathAddLineToPoint(path, nil, STENCIL_RADIUS * cos(_angleForVertex(curPos)), STENCIL_RADIUS * sin(_angleForVertex(curPos)))
             curPos += 1
@@ -220,7 +209,7 @@ class Platform {
     }
     
     func pointDidCollide(pt: Point) -> Bool {
-        return pt.pos == pos || (pwrUp == .Doubled && pt.pos == pt.pos + 1)
+        return pt.pos == pos || (pwrUp == .Doubled && pt.pos == (pos - 1 < 0 ? sides - 1 : pos - 1))
     }
     
     func ciel(num: Double) -> Int {

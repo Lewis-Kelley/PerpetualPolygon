@@ -51,7 +51,7 @@ class GameScene: SKScene {
         backgroundColor = colors.backgdColor()
         
         platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0)
-        points.append(Point(scene: self, sides: sides, color: colors.pointsColor()))
+        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: .None))
         
         /* Create center shape and platform shape */
         
@@ -136,6 +136,9 @@ class GameScene: SKScene {
                 self.points.removeAtIndex(0)
                 self.score += 1
                 self.streak += 1
+                if (point?.pwr)! != Powers.None {
+                    platform.getPowerUp((point?.pwr)!)
+                }
             }
         }
         if (!self.spawning) {
@@ -148,6 +151,7 @@ class GameScene: SKScene {
         self.life = self.life - 1
         self.streak = 0
         self.lifeLabel?.text = "\(self.life)"
+        platform.getPowerUp(.None)
         if (self.life <= 0) {
             self.paused = true
             // Save the highscore to firebase
@@ -170,7 +174,7 @@ class GameScene: SKScene {
     }
     
     func spawn() {
-        points.append(Point(scene: self, sides: sides, color: colors.pointsColor()))
+        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: streak > 4 ? .Doubled : .None))
         self.spawning = false
     }
     
