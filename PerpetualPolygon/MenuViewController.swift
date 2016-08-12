@@ -26,6 +26,7 @@ class MenuViewController: UIViewController {
     
     var managedObjectContext: NSManagedObjectContext?
     var diff: Int = 0 //0 = easiest, MAX_DIFF = hardest
+    static var diffForScores = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

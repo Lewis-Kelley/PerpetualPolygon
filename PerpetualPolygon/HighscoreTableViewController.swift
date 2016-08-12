@@ -16,18 +16,57 @@ class HighscoreViewController : UITableViewController {
     
     let scoreCellIdentifier = "HighScoreCell"
     var highScores = [Highscore]()
+    var highScoresToShow = [Highscore]()
     var managedObjectContext: NSManagedObjectContext?
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
+    var filter = 0
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.highScores.count
+        return self.highScoresToShow.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(scoreCellIdentifier)
-        cell?.textLabel?.text = highScores[indexPath.row].score
-        cell?.detailTextLabel?.text = highScores[indexPath.row].playerName
+        cell?.textLabel?.text = highScoresToShow[indexPath.row].score
+        cell?.detailTextLabel?.text = highScoresToShow[indexPath.row].playerName
         return cell!
+    }
+    
+    @IBAction func difficultyButtonPressed(sender: AnyObject) {
+        let alertController = UIAlertController(title: "\(self.diffCalc()) Difficutly", message: "", preferredStyle: .ActionSheet)
+     
+        let difficutlyUpAction = UIAlertAction(title: "Difficulty Up", style: .Default) { (UIAlertAction) in
+            if self.filter < 4 {
+                self.filter += 1
+            }
+            alertController.title = "\(self.diffCalc()) Difficulty"
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(difficutlyUpAction)
+        
+        let difficutlyDownAction = UIAlertAction(title: "Difficulty Down", style: .Default) { (UIAlertAction) in
+            if self.filter > 0 {
+                self.filter -= 1
+            }
+            alertController.title = "\(self.diffCalc()) Difficutly"
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(difficutlyDownAction)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) in
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(okAction)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (UIAlertAction) in
+            return
+        }
+        alertController.addAction(cancel)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -39,7 +78,27 @@ class HighscoreViewController : UITableViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         self.highScores.removeAll()
-        
+        prepareObservers()
+        self.makeHighscoreArray()
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.makeHighscoreArray()
+        self.tableView.reloadData()
+    }
+    
+    func makeHighscoreArray() {
+        self.highScoresToShow.removeAll()
+        for highscore in self.highScores {
+            if highscore.difficulty == self.diffCalc() || self.diffCalc() == "All" {
+                self.highScoresToShow.append(highscore)
+            }
+        }
+    }
+    
+    func prepareObservers() {
         // Add observer for CHILD ADDED
         self.highscoreRef.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot) in
             if !snapshot.exists() {
@@ -92,7 +151,21 @@ class HighscoreViewController : UITableViewController {
                 self.setEditing(false, animated: true)
             }
         }
-        self.tableView.reloadData()
+
+    }
+    
+    func diffCalc() -> String {
+        if filter == 0 {
+            return "All"
+        } else if filter == 1 {
+            return "Easy"
+        } else if filter == 2 {
+            return "Medium"
+        } else if filter == 3 {
+            return "Hard"
+        } else {
+            return "Very Hard"
+        }
     }
     
     // MARK: - Navigation

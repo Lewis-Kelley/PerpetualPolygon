@@ -24,9 +24,9 @@ class Highscore {
     
     init(snapshot: FIRDataSnapshot) {
         self.key = snapshot.key
-        self.playerName = snapshot.valueForKey("player") as! String
-        self.score = snapshot.valueForKey("score") as! String
-        self.difficulty = snapshot.valueForKey("difficulty") as! String
+        self.playerName = snapshot.value!["player"] as! String
+        self.score = snapshot.value!["score"] as! String
+        self.difficulty = snapshot.value!["difficulty"] as! String
     }
     
     func getSnapshotValue() -> NSDictionary {
