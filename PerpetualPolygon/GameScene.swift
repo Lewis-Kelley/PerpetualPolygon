@@ -169,10 +169,6 @@ class GameScene: SKScene {
     }
     
     func saveHighScore() {
-<<<<<<< Updated upstream
-        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Creg", difficulty: "Medium").getSnapshotValue()) //Why Creg?
-=======
-        
         let alertController = UIAlertController(title: "Enter Player Name", message: "", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textfield: UITextField) in
@@ -192,7 +188,6 @@ class GameScene: SKScene {
         alertController.addAction(okAction)
         
         self.controller.presentViewController(alertController, animated: true, completion: nil)
->>>>>>> Stashed changes
     }
     
     func delay(delay:Double, closure:()->()) {
