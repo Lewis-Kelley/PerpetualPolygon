@@ -48,6 +48,7 @@ class GameScene: SKScene {
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
     
     override func didMoveToView(view: SKView) {
+        let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
         backgroundColor = colors.backgdColor()
         
         platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0)
@@ -68,6 +69,7 @@ class GameScene: SKScene {
         
         lifeLabel = SKLabelNode(fontNamed: FONT_ID)
         lifeLabel!.text = "\(life)"
+        lifeLabel?.fontColor = txtColor
         lifeLabel!.fontSize = FONT_SIZE
         lifeLabel!.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame) - FONT_SIZE / 3.0)
         lifeLabel!.zPosition = 101.00
@@ -76,6 +78,7 @@ class GameScene: SKScene {
         /* Create score labels */
         
         hScoreLbl = SKLabelNode(fontNamed: FONT_ID)
+        hScoreLbl.fontColor = txtColor
         hScoreLbl.fontSize = FONT_SIZE
         hScoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
         hScoreLbl.horizontalAlignmentMode = .Left
@@ -83,6 +86,7 @@ class GameScene: SKScene {
         addChild(hScoreLbl)
         
         scoreLbl = SKLabelNode(fontNamed: FONT_ID)
+        scoreLbl.fontColor = txtColor
         scoreLbl.fontSize = FONT_SIZE
         scoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR + 3.0 * TEXT_BUFFER)
         scoreLbl.horizontalAlignmentMode = .Left
@@ -92,6 +96,7 @@ class GameScene: SKScene {
         /* Create difficulty and powerpoint labels */
         
         diffLbl = SKLabelNode(fontNamed: FONT_ID)
+        diffLbl.fontColor = txtColor
         diffLbl.fontSize = FONT_SIZE
         diffLbl.position = CGPoint(x: CGRectGetMaxX(frame) - TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
         diffLbl.horizontalAlignmentMode = .Right
@@ -100,6 +105,7 @@ class GameScene: SKScene {
         addChild(diffLbl)
         
         pptLbl = SKLabelNode(fontNamed: FONT_ID)
+        pptLbl.fontColor = txtColor
         pptLbl.fontSize = FONT_SIZE
         pptLbl.position = CGPoint(x: CGRectGetMaxX(frame) - TEXT_BUFFER, y: CGRectGetMaxY(frame) - frame.height * BOX_HEIGHT_FACTOR + 3.0 * TEXT_BUFFER)
         pptLbl.horizontalAlignmentMode = .Right

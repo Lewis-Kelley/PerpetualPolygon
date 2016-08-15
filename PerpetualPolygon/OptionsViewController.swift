@@ -15,11 +15,14 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
     let BACKGD_TAG = 2
     let SHAPE_TAG = 3
     
+    static let TEXT_COLOR_CUTOFF: Float = 0.30
+    
     let SHOW_MENU_SEGUE = "OptionsToMain"
     
     @IBOutlet weak var pointsBt: UIButton!
     @IBOutlet weak var platformBt: UIButton!
     @IBOutlet weak var backgdBt: UIButton!
+    @IBOutlet weak var shapeBt: UIButton!
 
     @IBOutlet weak var colorVw: UIView!
     
@@ -64,7 +67,10 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
         if frc.sections![0].numberOfObjects == 0 { // First time starting up
             colors = NSEntityDescription.insertNewObjectForEntityForName("Colors", inManagedObjectContext: moc!) as! Colors
             
-            // Assign defaults
+            colors.pointsR = 1.0
+            colors.platformG = 1.0
+            colors.backgdB = 1.0
+            
             try! moc?.save()
         } else {
             colors = frc.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! Colors
@@ -72,11 +78,26 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
         return colors
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    static func colorDist(color: UIColor) -> Float {
+        let colors = CGColorGetComponents(color.CGColor)
+        return sqrt(Float(colors[0] * colors[0] + colors[1] * colors[1] + colors[2] * colors[2]))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         colors = OptionsViewController.getColors(managedObjectContext!, delegate: self)
+        
+        for tag in 1...3 {
+            updateButton(tag, fromCD: true)
+        }
+        
+        curTag = 0
         pressedBt(nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     func saveColors() {
@@ -102,6 +123,52 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
         
         try! managedObjectContext?.save()
+    }
+    
+    func updateButton(tag: Int, fromCD: Bool) {
+        switch tag {
+        case POINTS_TAG:
+            pointsBt.backgroundColor = UIColor(red: CGFloat(fromCD ? colors.pointsR! : red.value),
+                                               green: CGFloat(fromCD ? colors.pointsG! : green.value),
+                                               blue: CGFloat(fromCD ? colors.pointsB! : blue.value), alpha: 1.0)
+            
+            if OptionsViewController.colorDist(pointsBt.backgroundColor!) > OptionsViewController.TEXT_COLOR_CUTOFF {
+                pointsBt.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            } else {
+                pointsBt.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            }
+        case PLATFORM_TAG:
+            platformBt.backgroundColor = UIColor(red: CGFloat(fromCD ? colors.platformR! : red.value),
+                                                 green: CGFloat(fromCD ? colors.platformG! : green.value),
+                                                 blue: CGFloat(fromCD ? colors.platformB! : blue.value), alpha: 1.0)
+            if OptionsViewController.colorDist(platformBt.backgroundColor!) > OptionsViewController.TEXT_COLOR_CUTOFF {
+                platformBt.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            } else {
+                platformBt.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            }
+        case BACKGD_TAG:
+            backgdBt.backgroundColor = UIColor(red: CGFloat(fromCD ? colors.backgdR! : red.value),
+                                               green: CGFloat(fromCD ? colors.backgdG! : green.value),
+                                               blue: CGFloat(fromCD ? colors.backgdB! : blue.value), alpha: 1.0)
+            
+            if OptionsViewController.colorDist(backgdBt.backgroundColor!) > OptionsViewController.TEXT_COLOR_CUTOFF {
+                backgdBt.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            } else {
+                backgdBt.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            }
+        case SHAPE_TAG:
+            shapeBt.backgroundColor = UIColor(red: CGFloat(fromCD ? colors.shapeR! : red.value),
+                                              green: CGFloat(fromCD ? colors.shapeG! : green.value),
+                                              blue: CGFloat(fromCD ? colors.shapeB! : blue.value), alpha: 1.0)
+            
+            if OptionsViewController.colorDist(shapeBt.backgroundColor!) > OptionsViewController.TEXT_COLOR_CUTOFF {
+                shapeBt.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            } else {
+                shapeBt.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            }
+        default:
+            print("Erroneous tag \(tag)")
+        }
     }
     
     @IBAction func pressedBt(sender: AnyObject?) {
@@ -144,7 +211,9 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
         greenLbl.text = String(format: "%.2f", green.value)
         blueLbl.text = String(format: "%.2f", blue.value)
         
-        colorVw.backgroundColor = UIColor(colorLiteralRed: red.value, green: green.value, blue: blue.value, alpha: 1.0)
+        updateButton(curTag, fromCD: false)
+        
+        colorVw.backgroundColor = UIColor(red: CGFloat(red.value), green: CGFloat(green.value), blue: CGFloat(blue.value), alpha: 1.0)
     }
     
     // MARK: - Navigation

@@ -447,7 +447,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59761955300000003" green="0.86044987419999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="P3M-gS-BIe" firstAttribute="leading" secondItem="VnX-5z-DO8" secondAttribute="leadingMargin" constant="-20" id="0b4-hU-jYv"/>
                             <constraint firstItem="P3M-gS-BIe" firstAttribute="top" secondItem="vB5-kU-y3x" secondAttribute="bottom" constant="12" id="1hp-q4-Zvn"/>
@@ -507,6 +507,7 @@
                         <outlet property="pointsBt" destination="YGz-GU-adR" id="CvI-Uj-KxR"/>
                         <outlet property="red" destination="I1k-g8-H4b" id="7j2-nq-jku"/>
                         <outlet property="redLbl" destination="MQv-nT-m8z" id="b1H-rg-YMZ"/>
+                        <outlet property="shapeBt" destination="eDa-de-wqI" id="sMv-uS-NYX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcB-cG-KVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
