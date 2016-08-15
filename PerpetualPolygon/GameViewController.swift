@@ -8,8 +8,12 @@
 
 import UIKit
 import SpriteKit
+import CoreData
 
 class GameViewController: UIViewController {
+    let GAME_TO_MENU_SEGUE = "GameToMenu"
+    
+    var managedObjectContext: NSManagedObjectContext?
     var colors: Colors?
     var diff: Int?
     
@@ -57,6 +61,14 @@ class GameViewController: UIViewController {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == GAME_TO_MENU_SEGUE {
+            let menuVC = segue.destinationViewController as! MenuViewController
+            menuVC.managedObjectContext = managedObjectContext
+            menuVC.diff = diff!
+        }
     }
     
     func setDiff(scene: GameScene) {

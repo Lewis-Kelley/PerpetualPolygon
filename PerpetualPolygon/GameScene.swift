@@ -24,6 +24,7 @@ class GameScene: SKScene {
     let TEXT_BUFFER: CGFloat = 5.0 //Distance text starts from borders
     let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
     let FONT_ID = "Arial"
+    let GAME_TO_MENU_SEGUE = "GameToMenu"
     
     // Status variables
     var spawning = false
@@ -175,19 +176,26 @@ class GameScene: SKScene {
             textfield.placeholder = "Player Name"
         }
         
-        let okAction = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) in
-            var name : String
-            let textfield = alertController.textFields![0]
-            if textfield.text == "" {
-                name = "Anon"
-            }
-            name = textfield.text!
+        alertController.addAction(UIAlertAction(title: "Return to Menu", style: .Default, handler: { (UIAlertAction) in
+            self.storeHighScore(alertController.textFields![0].text!)
             
-            self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: name, difficulty: self.diff!).getSnapshotValue())
-        }
-        alertController.addAction(okAction)
+            self.controller.performSegueWithIdentifier(self.GAME_TO_MENU_SEGUE, sender: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Play again", style: .Default, handler: { (UIAlertAction) in
+            self.storeHighScore(alertController.textFields![0].text!)
+        }))
         
         self.controller.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func storeHighScore(name: String) {
+        var name = name
+        if name == "" {
+            name = "Anon"
+        }
+        
+        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: name, difficulty: self.diff!).getSnapshotValue())
     }
     
     func delay(delay:Double, closure:()->()) {
