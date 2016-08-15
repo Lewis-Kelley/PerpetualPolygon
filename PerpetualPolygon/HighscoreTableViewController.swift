@@ -131,6 +131,9 @@ class HighscoreViewController : UITableViewController {
             }
             let newHighscore = Highscore(snapshot: snapshot)
             self.highScoresToShow.insert(newHighscore, atIndex: 0)
+            self.highScoresToShow.sortInPlace({ (highscore1: Highscore, highscore2: Highscore) -> Bool in
+                return Int(highscore1.score) > Int(highscore2.score)
+            })
             self.highScores.insert(newHighscore, atIndex: 0)
             self.tableView.reloadData()
         }
