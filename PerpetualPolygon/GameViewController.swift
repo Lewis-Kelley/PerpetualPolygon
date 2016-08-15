@@ -20,6 +20,35 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initGame()
+    }
+
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Landscape
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == GAME_TO_MENU_SEGUE {
+            let menuVC = segue.destinationViewController as! MenuViewController
+            menuVC.managedObjectContext = managedObjectContext
+            menuVC.diff = diff!
+        }
+    }
+    
+    func initGame() {
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
@@ -39,35 +68,6 @@ class GameViewController: UIViewController {
             
             
             skView.presentScene(scene)
-        }
-    }
-
-    override func shouldAutorotate() -> Bool {
-        return true
-    }
-
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .AllButUpsideDown
-        } else {
-            return .All
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == GAME_TO_MENU_SEGUE {
-            let menuVC = segue.destinationViewController as! MenuViewController
-            menuVC.managedObjectContext = managedObjectContext
-            menuVC.diff = diff!
         }
     }
     

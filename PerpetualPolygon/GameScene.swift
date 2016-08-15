@@ -48,7 +48,7 @@ class GameScene: SKScene {
     var highScore = 0
     
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
-    var controller : UIViewController!
+    var controller : GameViewController!
     
     override func didMoveToView(view: SKView) {
         let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
@@ -170,10 +170,10 @@ class GameScene: SKScene {
     }
     
     func saveHighScore() {
-        let alertController = UIAlertController(title: "Enter Player Name", message: "", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Your score: \(score)", message: "", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textfield: UITextField) in
-            textfield.placeholder = "Player Name"
+            textfield.placeholder = "Enter Name"
         }
         
         alertController.addAction(UIAlertAction(title: "Return to Menu", style: .Default, handler: { (UIAlertAction) in
@@ -184,6 +184,8 @@ class GameScene: SKScene {
         
         alertController.addAction(UIAlertAction(title: "Play again", style: .Default, handler: { (UIAlertAction) in
             self.storeHighScore(alertController.textFields![0].text!)
+            
+            self.controller.initGame()
         }))
         
         self.controller.presentViewController(alertController, animated: true, completion: nil)
@@ -275,7 +277,7 @@ class GameScene: SKScene {
         return rightBox
     }
     
-    func setViewController(controller: UIViewController) {
+    func setViewController(controller: GameViewController) {
         self.controller = controller
     }
 }
