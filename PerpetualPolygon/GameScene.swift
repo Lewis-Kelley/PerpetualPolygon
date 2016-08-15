@@ -160,7 +160,7 @@ class GameScene: SKScene {
     }
     
     func saveHighScore() {
-        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Creg", difficulty: "Medium").getSnapshotValue()) //Why Larry?
+        self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Creg", difficulty: "Medium").getSnapshotValue()) //Why Creg?
     }
     
     func delay(delay:Double, closure:()->()) {
