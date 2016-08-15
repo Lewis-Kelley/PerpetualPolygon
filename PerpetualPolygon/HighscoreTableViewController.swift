@@ -79,7 +79,6 @@ class HighscoreViewController : UITableViewController {
         tableView.reloadData()
         self.highScores.removeAll()
         prepareObservers()
-        self.makeHighscoreArray()
         self.tableView.reloadData()
     }
     
@@ -95,6 +94,9 @@ class HighscoreViewController : UITableViewController {
             if highscore.difficulty == self.diffCalc() || self.diffCalc() == "All" {
                 self.highScoresToShow.append(highscore)
             }
+        }
+        self.highScores.sortInPlace { (highscore1 : Highscore, highscore2 : Highscore) -> Bool in
+            return Int(highscore1.score) > Int(highscore2.score)
         }
     }
     
