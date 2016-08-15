@@ -100,6 +100,7 @@ class HighscoreViewController : UITableViewController {
         super.viewWillAppear(animated)
         self.highScores.removeAll()
         prepareObservers()
+        self.makeHighscoreArray()
         self.tableView.reloadData()
     }
     
