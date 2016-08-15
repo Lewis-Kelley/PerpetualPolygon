@@ -26,40 +26,62 @@ class HighscoreViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(scoreCellIdentifier)
-        cell?.textLabel?.text = highScoresToShow[indexPath.row].score
-        cell?.detailTextLabel?.text = highScoresToShow[indexPath.row].playerName
-        return cell!
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(scoreCellIdentifier) as! HighScoreCell
+        let highscore = self.highScoresToShow[indexPath.row]
+        cell.configure(highscore.playerName, score: highscore.score, diff: highscore.difficulty)
+        return cell
     }
     
     @IBAction func difficultyButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "\(self.diffCalc()) Difficutly", message: "", preferredStyle: .ActionSheet)
      
-        let difficutlyUpAction = UIAlertAction(title: "Difficulty Up", style: .Default) { (UIAlertAction) in
-            if self.filter < 4 {
-                self.filter += 1
-            }
-            alertController.title = "\(self.diffCalc()) Difficulty"
+        let easyAction = UIAlertAction(title: "Easy", style: .Default) { (UIAlertAction) in
+            self.filter = 1
+            alertController.title = "Easy Difficulty"
             self.makeHighscoreArray()
             self.tableView.reloadData()
         }
-        alertController.addAction(difficutlyUpAction)
+        alertController.addAction(easyAction)
         
-        let difficutlyDownAction = UIAlertAction(title: "Difficulty Down", style: .Default) { (UIAlertAction) in
-            if self.filter > 0 {
-                self.filter -= 1
-            }
+        let mediumAction = UIAlertAction(title: "Medium", style: .Default) { (UIAlertAction) in
+            self.filter = 2
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
         }
-        alertController.addAction(difficutlyDownAction)
+        alertController.addAction(mediumAction)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) in
+        let hardAction = UIAlertAction(title: "Hard", style: .Default) { (UIAlertAction) in
+            self.filter = 3
+            alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
         }
-        alertController.addAction(okAction)
+        alertController.addAction(hardAction)
+        
+        let extremeAction = UIAlertAction(title: "Extreme", style: .Default) { (UIAlertAction) in
+            self.filter = 4
+            alertController.title = "\(self.diffCalc()) Difficutly"
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(extremeAction)
+        
+        let impossibleAction = UIAlertAction(title: "Impossible", style: .Default) { (UIAlertAction) in
+            self.filter = 5
+            alertController.title = "\(self.diffCalc()) Difficutly"
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(impossibleAction)
+        
+        let allAction = UIAlertAction(title: "All", style: .Default) { (UIAlertAction) in
+            self.filter = 0
+            alertController.title = "\(self.diffCalc()) Difficutly"
+            self.makeHighscoreArray()
+            self.tableView.reloadData()
+        }
+        alertController.addAction(allAction)
         
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (UIAlertAction) in
             return
@@ -76,7 +98,6 @@ class HighscoreViewController : UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
         self.highScores.removeAll()
         prepareObservers()
         self.tableView.reloadData()
@@ -84,18 +105,18 @@ class HighscoreViewController : UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.makeHighscoreArray()
         self.tableView.reloadData()
     }
     
     func makeHighscoreArray() {
         self.highScoresToShow.removeAll()
         for highscore in self.highScores {
-            if highscore.difficulty == self.diffCalc() || self.diffCalc() == "All" {
+            let diff = self.diffCalc()
+            if highscore.difficulty == diff || filter == 0 {
                 self.highScoresToShow.append(highscore)
             }
         }
-        self.highScores.sortInPlace { (highscore1 : Highscore, highscore2 : Highscore) -> Bool in
+        self.highScoresToShow.sortInPlace { (highscore1 : Highscore, highscore2 : Highscore) -> Bool in
             return Int(highscore1.score) > Int(highscore2.score)
         }
     }
@@ -108,6 +129,7 @@ class HighscoreViewController : UITableViewController {
                 return
             }
             let newHighscore = Highscore(snapshot: snapshot)
+            self.highScoresToShow.insert(newHighscore, atIndex: 0)
             self.highScores.insert(newHighscore, atIndex: 0)
             self.tableView.reloadData()
         }
@@ -165,8 +187,10 @@ class HighscoreViewController : UITableViewController {
             return "Medium"
         } else if filter == 3 {
             return "Hard"
+        } else if filter == 4 {
+            return "Extreme"
         } else {
-            return "Very Hard"
+            return "Impossible"
         }
     }
     

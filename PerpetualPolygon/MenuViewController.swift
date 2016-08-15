@@ -65,8 +65,13 @@ class MenuViewController: UIViewController {
             gameVC.colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
             gameVC.diff = diff
         } else if segue.identifier == SHOW_SCORES_SEGUE {
+<<<<<<< Updated upstream
             print("Moving to scores")
             (segue.destinationViewController as! HighscoreViewController).managedObjectContext = managedObjectContext
+=======
+            (segue.destinationViewController as! HighscoreViewController).managedObjectContext = managedObjectContext
+            (segue.destinationViewController as! HighscoreViewController).filter = 0
+>>>>>>> Stashed changes
         }
     }
 

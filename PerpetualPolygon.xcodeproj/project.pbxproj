@@ -11,6 +11,7 @@
 		628198631D593F69006B0ADA /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198621D593F69006B0ADA /* Highscore.swift */; };
 		628198671D594695006B0ADA /* HighscoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628198661D594695006B0ADA /* HighscoreTableViewController.swift */; };
 		6292A0F31D5D9E6D003D11AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6292A0F21D5D9E6D003D11AD /* GoogleService-Info.plist */; };
+		6292A0F51D62422C003D11AD /* HighScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6292A0F41D62422C003D11AD /* HighScoreCell.swift */; };
 		62B5AB241D45DC9B008E7103 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5AB231D45DC9B008E7103 /* Point.swift */; };
 		F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610FFE81D4176DF009F4EC7 /* Platform.swift */; };
 		F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6121E011D2AD56A00CF7F2D /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 		628198621D593F69006B0ADA /* Highscore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		628198661D594695006B0ADA /* HighscoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreTableViewController.swift; sourceTree = "<group>"; };
 		6292A0F21D5D9E6D003D11AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6292A0F41D62422C003D11AD /* HighScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreCell.swift; sourceTree = "<group>"; };
 		62B5AB231D45DC9B008E7103 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerpetualPolygon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerpetualPolygon/Pods-PerpetualPolygon.debug.xcconfig"; sourceTree = "<group>"; };
 		F610FFE81D4176DF009F4EC7 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				F6468AA81D55563500510AB6 /* Colors.swift */,
 				628198621D593F69006B0ADA /* Highscore.swift */,
 				628198661D594695006B0ADA /* HighscoreTableViewController.swift */,
+				6292A0F41D62422C003D11AD /* HighScoreCell.swift */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				TargetAttributes = {
 					F6121DFD1D2AD56A00CF7F2D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = U9CGL53Z8S;
 					};
 				};
 			};
@@ -255,6 +259,7 @@
 				F6468AA91D55563500510AB6 /* Colors+CoreDataProperties.swift in Sources */,
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
+				6292A0F51D62422C003D11AD /* HighScoreCell.swift in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
 				F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */,
 				628198631D593F69006B0ADA /* Highscore.swift in Sources */,
@@ -375,10 +380,13 @@
 			baseConfigurationReference = 7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -388,10 +396,13 @@
 			baseConfigurationReference = 5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

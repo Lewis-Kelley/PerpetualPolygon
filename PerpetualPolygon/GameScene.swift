@@ -8,6 +8,7 @@
 
 import SpriteKit
 import Firebase
+import UIKit
 
 class GameScene: SKScene {
     let POLYGON_SIZE_RATIO:CGFloat = 0.50
@@ -46,6 +47,7 @@ class GameScene: SKScene {
     var highScore = 0
     
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
+    var controller : UIViewController!
     
     override func didMoveToView(view: SKView) {
         let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
@@ -161,12 +163,36 @@ class GameScene: SKScene {
         if (self.life <= 0) {
             self.paused = true
             // Save the highscore to firebase
+            self.removeAllChildren()
             saveHighScore()
         }
     }
     
     func saveHighScore() {
+<<<<<<< Updated upstream
         self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: "Creg", difficulty: "Medium").getSnapshotValue()) //Why Creg?
+=======
+        
+        let alertController = UIAlertController(title: "Enter Player Name", message: "", preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textfield: UITextField) in
+            textfield.placeholder = "Player Name"
+        }
+        
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) in
+            var name : String
+            let textfield = alertController.textFields![0]
+            if textfield.text == "" {
+                name = "Anon"
+            }
+            name = textfield.text!
+            
+            self.highscoreRef.childByAutoId().setValue(Highscore(score: "\(self.score)", playerName: name, difficulty: self.diff!).getSnapshotValue())
+        }
+        alertController.addAction(okAction)
+        
+        self.controller.presentViewController(alertController, animated: true, completion: nil)
+>>>>>>> Stashed changes
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -244,6 +270,10 @@ class GameScene: SKScene {
         boxConfig(rightBox)
         
         return rightBox
+    }
+    
+    func setViewController(controller: UIViewController) {
+        self.controller = controller
     }
 }
 

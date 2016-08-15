@@ -136,6 +136,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-bW-yBp">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="296"/>
                                         <subviews>
+<<<<<<< Updated upstream
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5p-OA-7h5">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
                                                 <subviews>
@@ -169,6 +170,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYv-Yd-6mD">
                                         <rect key="frame" x="0.0" y="150" width="300" height="150"/>
                                         <subviews>
+=======
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFZ-cx-sv3">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="148"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="High Scores">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="1Ho-Y9-AMg" kind="show" identifier="MainToScores" id="cjQ-EJ-Iro"/>
+                                                </connections>
+                                            </button>
+>>>>>>> Stashed changes
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-Vg-Xv6">
                                                 <rect key="frame" x="8" y="0.0" width="284" height="142"/>
                                                 <color key="backgroundColor" red="1" green="0.58241907739395971" blue="0.33381396809060404" alpha="1" colorSpace="calibratedRGB"/>
@@ -259,13 +272,14 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HighScoreCell" textLabel="41C-1x-Y2O" detailTextLabel="ZfG-e8-Atf" style="IBUITableViewCellStyleValue1" id="pGH-I7-blU">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HighScoreCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HighScoreCell" id="pGH-I7-blU" customClass="HighScoreCell" customModule="PerpetualPolygon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGH-I7-blU" id="VaD-Nd-AP5">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+<<<<<<< Updated upstream
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="41C-1x-Y2O">
                                             <rect key="frame" x="15" y="12" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -278,10 +292,44 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+=======
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4n8-5e-vvl">
+                                            <rect key="frame" x="8" y="11" width="195" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kB-q4-0av">
+                                            <rect key="frame" x="397" y="11" width="195" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bym-Ni-JrC">
+                                            <rect key="frame" x="203" y="11" width="194.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+>>>>>>> Stashed changes
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4kB-q4-0av" firstAttribute="centerY" secondItem="VaD-Nd-AP5" secondAttribute="centerY" id="BV1-ZI-oXy"/>
+                                        <constraint firstAttribute="trailing" secondItem="4kB-q4-0av" secondAttribute="trailing" constant="8" id="LUz-zI-j83"/>
+                                        <constraint firstItem="4kB-q4-0av" firstAttribute="leading" secondItem="bym-Ni-JrC" secondAttribute="trailing" id="Sji-CK-2t1"/>
+                                        <constraint firstItem="bym-Ni-JrC" firstAttribute="centerY" secondItem="VaD-Nd-AP5" secondAttribute="centerY" id="TYl-MA-0ct"/>
+                                        <constraint firstItem="4n8-5e-vvl" firstAttribute="leading" secondItem="VaD-Nd-AP5" secondAttribute="leading" constant="8" id="b9n-Fn-RgO"/>
+                                        <constraint firstItem="4kB-q4-0av" firstAttribute="width" secondItem="bym-Ni-JrC" secondAttribute="width" id="gsL-v6-u2O"/>
+                                        <constraint firstItem="bym-Ni-JrC" firstAttribute="leading" secondItem="4n8-5e-vvl" secondAttribute="trailing" id="oik-zg-3Sx"/>
+                                        <constraint firstItem="4n8-5e-vvl" firstAttribute="centerY" secondItem="VaD-Nd-AP5" secondAttribute="centerY" id="qtX-sS-XGt"/>
+                                        <constraint firstItem="4kB-q4-0av" firstAttribute="width" secondItem="4n8-5e-vvl" secondAttribute="width" id="ss6-pi-3DS"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="diffLabel" destination="4kB-q4-0av" id="dzQ-4s-EUl"/>
+                                    <outlet property="nameLabel" destination="4n8-5e-vvl" id="FV8-hp-nAM"/>
+                                    <outlet property="scoreLabel" destination="bym-Ni-JrC" id="yte-jp-NC2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
