@@ -14,6 +14,8 @@ class Platform {
     let TOLERANCE:CGFloat = 0.001
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
     let PWR_UP_TIME = 10.0
+    
+    let actionSlave = SKShapeNode() // Used to handle the gaining and losing of powerups
 
     var sides: Int
     var pos: Int { //The side of the polygon currently occupied by the center of the platform, starting from the top and proceeding ccw
@@ -57,7 +59,6 @@ class Platform {
     var fillCol: SKColor
     var zPos: CGFloat
     
-    var pwrUpStart = NSDate()
     var slowPointsCallback: (Bool -> Void)
     var pwrUp = Powers.None
     
@@ -73,6 +74,7 @@ class Platform {
         self.alertLbl = alertLbl
         
         makeImg()
+        scene.addChild(actionSlave)
     }
     
     /* Used to make the stencil */
@@ -189,9 +191,12 @@ class Platform {
         })]))
     }
     
+    func clearAlertLbl() {
+        alertLbl.text = ""
+    }
+    
     func getPowerUp(pwr: Powers) {
         if pwr != pwrUp {
-            print("Changing from power \(pwrUp)")
             switch pwrUp {
             case .Doubled:
                 pwrUp = pwr
@@ -215,13 +220,17 @@ class Platform {
                 speed *= 2.0
                 pwrUp = pwr
             case .None:
-                break
+                pwrUp = pwr
             }
         }
         
-        alertLbl.text = "Current power point: \(pwrUp)"
+        if pwrUp != .None {
+            alertLbl.text = "Current power point: \(pwrUp)"
+        }
         
-        pwrUpStart = NSDate()
+        print("Removing all actions")
+        actionSlave.removeAllActions()
+        actionSlave.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock({ print("Running first block"); self.alertLbl.text = "" }), SKAction.waitForDuration(4), SKAction.runBlock({ self.getPowerUp(.None) })]))
     }
     
     func pointDidCollide(pt: Point) -> Bool {
