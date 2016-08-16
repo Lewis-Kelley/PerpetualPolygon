@@ -106,7 +106,7 @@ class GameScene: SKScene {
         hScoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
         hScoreLbl.horizontalAlignmentMode = .Left
         hScoreLbl.zPosition = 101.0
-        hScoreLbl.text = "High: \(highScore)"
+        hScoreLbl.text = "High: \(highScore!)"
         addChild(hScoreLbl)
         
         scoreLbl = SKLabelNode(fontNamed: FONT_ID)
@@ -203,7 +203,13 @@ class GameScene: SKScene {
     }
     
     func saveHighScore() {
-        let alertController = UIAlertController(title: "Your score: \(score)", message: "", preferredStyle: .Alert)
+        var alertController: UIAlertController
+        if score > highScore {
+            alertController = UIAlertController(title: "Your score: \(score)", message: "New high score!", preferredStyle: .Alert)
+            OptionsViewController.saveHighScore(controller.managedObjectContext, delegate: nil, diff: controller.diff!, score: score)
+        } else {
+            alertController = UIAlertController(title: "Your score: \(score)", message: "", preferredStyle: .Alert)
+        }
         
         alertController.addTextFieldWithConfigurationHandler { (textfield: UITextField) in
             textfield.placeholder = "Enter Name"
