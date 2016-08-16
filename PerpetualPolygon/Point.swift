@@ -14,7 +14,7 @@ class Point {
     let centerX : Double
     let centerY : Double
     var gameRunning : Bool = true
-    var SPEED : Double = 10
+    var SPEED : Double = 200
     var radius : Double = 500
     let sides : Int
     let pos : Int // The side that the point will come from.
@@ -46,9 +46,10 @@ class Point {
         scene.addChild(img)
     }
     
-    func update() {
+    func update(delta: CFTimeInterval) {
         if (gameRunning){
-            radius = radius - SPEED
+            radius -= SPEED * delta
+            print("Point's radius is now \(radius)")
             img.position = CGPoint(x: centerX + (radius * cos(angle)), y: centerY + (radius * sin(angle)))
             if (radius <= 0) {
                 self.SPEED = 0

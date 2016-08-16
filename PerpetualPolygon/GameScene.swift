@@ -31,6 +31,7 @@ class GameScene: SKScene {
     var score = 0
     var life = 5
     var streak = 0
+    var lastTime: CFTimeInterval?
     
     // Labels
     var lifeLabel : SKLabelNode?
@@ -46,6 +47,10 @@ class GameScene: SKScene {
     var sides = 6
     var diff: String?
     var highScore = 0
+    
+    var sideRadius: Double { //The distance from the middle of a side to the center of the polygon
+        return Double(CENTER_SHAPE_RADIUS) * cos(M_PI / Double(sides))
+    }
     
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
     var controller : GameViewController!
@@ -138,9 +143,15 @@ class GameScene: SKScene {
         scoreLbl.text = "Score: \(score)"
         pptLbl.text = "Streak: \(streak)" // TODO: Something fancy to show how close the player is getting to a ppt
         
+        if lastTime == nil {
+            lastTime = currentTime
+        }
+        
+        let delta = currentTime - lastTime!
+        
         for point in points {
-            point?.update()
-            if (point?.radius == Double(self.CENTER_SHAPE_RADIUS) && platform.pointDidCollide(point!)) {
+            point?.update(delta)
+            if (abs((point?.radius)! - sideRadius) < 10 && platform.pointDidCollide(point!)) {
                 self.scene?.removeChildrenInArray([point!.img])
                 self.points.removeAtIndex(0)
                 self.score += 1
@@ -153,6 +164,8 @@ class GameScene: SKScene {
         if (!self.spawning) {
             delay(1.5, closure: spawn)
         }
+        
+        lastTime = currentTime
     }
     
     func removeFromArray(pointToFind : Point) {
