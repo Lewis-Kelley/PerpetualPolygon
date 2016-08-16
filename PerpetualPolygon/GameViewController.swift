@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     
     var managedObjectContext: NSManagedObjectContext?
     var colors: Colors?
-    var diff: Int?
+    var diff: Difficulty?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
         if segue.identifier == GAME_TO_MENU_SEGUE {
             let menuVC = segue.destinationViewController as! MenuViewController
             menuVC.managedObjectContext = managedObjectContext
-            menuVC.diff = diff!
+            menuVC.diff = diff!.rawValue
         }
     }
     
@@ -73,31 +73,31 @@ class GameViewController: UIViewController {
     
     func setDiff(scene: GameScene) {
         switch diff! {
-        case 0:
+        case .Easy:
             scene.platformSpeed = M_PI * 2.0 / 1.5
             scene.pointSpeed = 175.0
             scene.sides = 3
             scene.diff = "Easy"
             scene.life = 1
-        case 1:
+        case .Medium:
             scene.platformSpeed = M_PI * 2.0 / 1.25
             scene.pointSpeed = 175.0
             scene.sides = 4
             scene.diff = "Medium"
             scene.life = 2
-        case 2:
+        case .Hard:
             scene.platformSpeed = M_PI * 2.0 / 1.0
             scene.pointSpeed = 200.0
             scene.sides = 5
             scene.diff = "Hard"
             scene.life = 3
-        case 3:
+        case .Extreme:
             scene.platformSpeed = M_PI * 2.0 / 0.75
             scene.pointSpeed = 225.0
             scene.sides = 6
             scene.diff = "Extreme"
             scene.life = 4
-        case 4:
+        case .Impossible:
             scene.platformSpeed = M_PI * 2.0 / 0.50
             scene.pointSpeed = 225.0
             scene.sides = 7

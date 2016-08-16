@@ -50,7 +50,7 @@ class GameScene: SKScene {
     var points : [Point?] = []
     var sides = 6
     var diff: String?
-    var highScore = 0
+    var highScore: Int?
     
     var sideRadius: Double { //The distance from the middle of a side to the center of the polygon
         return Double(CENTER_SHAPE_RADIUS) * cos(M_PI / Double(sides))
@@ -62,6 +62,9 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
         backgroundColor = colors.backgdColor()
+        
+        /* Init highScore */
+        highScore = OptionsViewController.getHighScore(controller.managedObjectContext, delegate: nil, diff: controller.diff!)
         
         /* Create center shape and platform shape */
         

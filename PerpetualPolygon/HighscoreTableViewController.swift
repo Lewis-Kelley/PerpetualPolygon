@@ -212,11 +212,11 @@ class HighscoreViewController : UITableViewController {
     }
 }
 
-enum Difficulty {
-    case All
-    case Easy
-    case Medium
-    case Hard
-    case Extreme
-    case Impossible
+enum Difficulty: Int {
+    case All = 0
+    case Easy = 1
+    case Medium = 2
+    case Hard = 3
+    case Extreme = 4
+    case Impossible = 5
 }

@@ -21,6 +21,8 @@
 		F6121E0B1D2AD56A00CF7F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E091D2AD56A00CF7F2D /* Main.storyboard */; };
 		F6121E0D1D2AD56A00CF7F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */; };
 		F6121E101D2AD56A00CF7F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6121E0E1D2AD56A00CF7F2D /* LaunchScreen.storyboard */; };
+		F61F9B141D63A18D004E2A47 /* Score+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F9B111D63A18D004E2A47 /* Score+CoreDataProperties.m */; };
+		F61F9B151D63A18D004E2A47 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F9B131D63A18D004E2A47 /* Score.m */; };
 		F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */; };
 		F6468AA01D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6468A9E1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodeld */; };
 		F6468AA61D55389200510AB6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6468AA51D55389200510AB6 /* MenuViewController.swift */; };
@@ -47,6 +49,11 @@
 		F6121E0C1D2AD56A00CF7F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6121E0F1D2AD56A00CF7F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6121E111D2AD56A00CF7F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F61F9B0F1D63A18C004E2A47 /* PerpetualPolygon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PerpetualPolygon-Bridging-Header.h"; sourceTree = "<group>"; };
+		F61F9B101D63A18D004E2A47 /* Score+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Score+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F61F9B111D63A18D004E2A47 /* Score+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Score+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F61F9B121D63A18D004E2A47 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		F61F9B131D63A18D004E2A47 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		F6468A9C1D55303D00510AB6 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		F6468A9F1D5535C800510AB6 /* PerpetualPolygonModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PerpetualPolygonModel.xcdatamodel; sourceTree = "<group>"; };
 		F6468AA51D55389200510AB6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +121,11 @@
 				628198621D593F69006B0ADA /* Highscore.swift */,
 				628198661D594695006B0ADA /* HighscoreTableViewController.swift */,
 				6292A0F41D62422C003D11AD /* HighScoreCell.swift */,
+				F61F9B101D63A18D004E2A47 /* Score+CoreDataProperties.h */,
+				F61F9B111D63A18D004E2A47 /* Score+CoreDataProperties.m */,
+				F61F9B121D63A18D004E2A47 /* Score.h */,
+				F61F9B131D63A18D004E2A47 /* Score.m */,
+				F61F9B0F1D63A18C004E2A47 /* PerpetualPolygon-Bridging-Header.h */,
 			);
 			path = PerpetualPolygon;
 			sourceTree = "<group>";
@@ -260,9 +272,11 @@
 				F6121E061D2AD56A00CF7F2D /* GameScene.swift in Sources */,
 				62B5AB241D45DC9B008E7103 /* Point.swift in Sources */,
 				6292A0F51D62422C003D11AD /* HighScoreCell.swift in Sources */,
+				F61F9B141D63A18D004E2A47 /* Score+CoreDataProperties.m in Sources */,
 				F6121E081D2AD56A00CF7F2D /* GameViewController.swift in Sources */,
 				F6468A9D1D55303D00510AB6 /* OptionsViewController.swift in Sources */,
 				628198631D593F69006B0ADA /* Highscore.swift in Sources */,
+				F61F9B151D63A18D004E2A47 /* Score.m in Sources */,
 				F610FFE91D4176DF009F4EC7 /* Platform.swift in Sources */,
 				F6121E021D2AD56A00CF7F2D /* AppDelegate.swift in Sources */,
 			);
@@ -380,6 +394,7 @@
 			baseConfigurationReference = 7729002B7EDAF0EBAB22F8F7 /* Pods-PerpetualPolygon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;
@@ -387,6 +402,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PerpetualPolygon/PerpetualPolygon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -396,6 +413,7 @@
 			baseConfigurationReference = 5A39376324E65755B74C37C1 /* Pods-PerpetualPolygon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PerpetualPolygon/Info.plist;
@@ -403,6 +421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rosehulman.PerpetualPolygon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PerpetualPolygon/PerpetualPolygon-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

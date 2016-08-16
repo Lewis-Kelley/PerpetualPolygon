@@ -44,15 +44,15 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
             return _fetchedResultsController!
         }
         
-        _fetchedResultsController = OptionsViewController.getFRC(managedObjectContext!, delegate: self)
+        _fetchedResultsController = OptionsViewController.getFRC(managedObjectContext!, delegate: self, forColors: true)
         
         return _fetchedResultsController!
     }
     var _fetchedResultsController: NSFetchedResultsController? = nil
     
-    static func getFRC(moc: NSManagedObjectContext, delegate: OptionsViewController?) -> NSFetchedResultsController {
-        let fetchReq = NSFetchRequest(entityName: "Colors")
-        fetchReq.sortDescriptors = [NSSortDescriptor(key: "pointsR", ascending: false)] //Pointless, but necessary
+    static func getFRC(moc: NSManagedObjectContext, delegate: OptionsViewController?, forColors: Bool) -> NSFetchedResultsController {
+        let fetchReq = NSFetchRequest(entityName: forColors ? "Colors" : "Score")
+        fetchReq.sortDescriptors = [NSSortDescriptor(key: forColors ? "pointsR" : "score", ascending: false)] //Pointless, but necessary
         
         let frc = NSFetchedResultsController(fetchRequest: fetchReq, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: "Master")
         
@@ -62,26 +62,47 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
     
     static func getColors(moc: NSManagedObjectContext?, delegate: OptionsViewController?) -> Colors {
-        let frc = getFRC(moc!, delegate: delegate)
-        var colors: Colors
+        let frc = getFRC(moc!, delegate: delegate, forColors: true)
         
         if frc.sections![0].numberOfObjects == 0 { // First time starting up
-            colors = NSEntityDescription.insertNewObjectForEntityForName("Colors", inManagedObjectContext: moc!) as! Colors
+            let colors = NSEntityDescription.insertNewObjectForEntityForName("Colors", inManagedObjectContext: moc!) as! Colors
             
             colors.pointsR = 1.0
             colors.platformG = 1.0
             colors.backgdB = 1.0
             
-            try! moc?.save()
-        } else {
-            colors = frc.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! Colors
+            try! moc!.save()
         }
-        return colors
+        
+        return frc.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! Colors
     }
     
     static func colorDist(color: UIColor) -> Float {
         let colors = CGColorGetComponents(color.CGColor)
         return sqrt(Float(colors[0] * colors[0] + colors[1] * colors[1] + colors[2] * colors[2]))
+    }
+    
+    static func getHighScore(moc: NSManagedObjectContext?, delegate: OptionsViewController?, diff: Difficulty) -> Int {
+        let frc = getFRC(moc!, delegate: delegate, forColors: false)
+        
+        if frc.sections![0].numberOfObjects == 0 { //First time starting up
+            for diff in Difficulty.Easy.rawValue...Difficulty.Impossible.rawValue {
+                print("Making new score for diff \(diff)")
+                let score = NSEntityDescription.insertNewObjectForEntityForName("Score", inManagedObjectContext: moc!) as! Score
+                score.difficulty = diff
+                score.score = 0
+                
+                try! moc!.save()
+            }
+        }
+        
+        return (frc.objectAtIndexPath(NSIndexPath(forRow: diff.rawValue, inSection: 0)) as! Score).score as! Int
+    }
+    
+    static func saveHighScore(moc: NSManagedObjectContext?, delegate: OptionsViewController?, diff: Difficulty, score: Int) {
+        let frc = getFRC(moc!, delegate: delegate, forColors: false)
+        (frc.objectAtIndexPath(NSIndexPath(forRow: diff.rawValue - 1, inSection: 0)) as! Score).score = score
+        try! moc!.save()
     }
     
     override func viewWillAppear(animated: Bool) {

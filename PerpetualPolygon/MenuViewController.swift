@@ -13,7 +13,7 @@ class MenuViewController: UIViewController {
     let SHOW_OPTIONS_SEGUE = "MainToOptions"
     let SHOW_GAME_SEGUE = "MainToGame"
     let SHOW_SCORES_SEGUE = "MenuToScores"
-    let MAX_DIFF = 4
+    let MAX_DIFF = 5
     let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
     let TITLE_FONT_SIZE: CGFloat = IPAD ? 68.0 : 34.0
     
@@ -25,7 +25,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var playBt: UIButton!
     
     var managedObjectContext: NSManagedObjectContext?
-    var diff: Int = 0 //0 = easiest, MAX_DIFF = hardest
+    var diff: Int = 1 //1 = easiest, MAX_DIFF = hardest
     static var diffForScores = 0
 
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class MenuViewController: UIViewController {
         } else if segue.identifier == SHOW_GAME_SEGUE {
             let gameVC = segue.destinationViewController as! GameViewController
             gameVC.colors = OptionsViewController.getColors(managedObjectContext, delegate: nil)
-            gameVC.diff = diff
+            gameVC.diff = Difficulty(rawValue: diff)
             gameVC.managedObjectContext = managedObjectContext
         } else if segue.identifier == SHOW_SCORES_SEGUE {
             print("Moving to scores")
@@ -75,8 +75,8 @@ class MenuViewController: UIViewController {
     @IBAction func adjDiff(sender: AnyObject) {
         diff += sender.tag
         
-        if diff < 0 {
-            diff = 0
+        if diff < 1 {
+            diff = 1
         } else if diff > MAX_DIFF {
             diff = MAX_DIFF
         } else {
