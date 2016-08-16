@@ -58,15 +58,19 @@ class Platform {
     var zPos: CGFloat
     
     var pwrUpStart = NSDate()
-    
+    var slowPointsCallback: (Bool -> Void)
     var pwrUp = Powers.None
     
-    init(scene:SKScene, sides:Int, fillCol:SKColor, zPos:CGFloat, speed: Double) {
+    var alertLbl: SKLabelNode
+    
+    init(scene:SKScene, sides:Int, fillCol:SKColor, zPos:CGFloat, speed: Double, cb: (Bool -> Void), alertLbl: SKLabelNode) {
         self.scene = scene
         self.sides = sides
         self.fillCol = fillCol
         self.zPos = zPos
         self.speed = speed
+        self.slowPointsCallback = cb
+        self.alertLbl = alertLbl
         
         makeImg()
     }
@@ -187,11 +191,15 @@ class Platform {
     
     func getPowerUp(pwr: Powers) {
         if pwr != pwrUp {
+            print("Changing from power \(pwrUp)")
             switch pwrUp {
             case .Doubled:
                 pwrUp = pwr
                 makeImg()
-                break
+            case .SlowPoints:
+                slowPointsCallback(false)
+            case .FastPlatform:
+                speed /= 2.0
             case .None:
                 break
             }
@@ -200,11 +208,18 @@ class Platform {
             case .Doubled:
                 pwrUp = pwr
                 makeImg()
-                break
+            case .SlowPoints:
+                slowPointsCallback(true)
+                pwrUp = pwr
+            case .FastPlatform:
+                speed *= 2.0
+                pwrUp = pwr
             case .None:
                 break
             }
         }
+        
+        alertLbl.text = "Current power point: \(pwrUp)"
         
         pwrUpStart = NSDate()
     }

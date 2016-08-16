@@ -34,6 +34,7 @@ class GameScene: SKScene {
     var lastTime: CFTimeInterval?
     var platformSpeed: Double?
     var pointSpeed: Double?
+    var slowedPoints = false
     
     // Labels
     var lifeLabel : SKLabelNode?
@@ -41,6 +42,7 @@ class GameScene: SKScene {
     var hScoreLbl: SKLabelNode!
     var diffLbl: SKLabelNode!
     var pptLbl: SKLabelNode!
+    var alertLbl: SKLabelNode!
     
     // Unchanging one game starts or containers
     var colors: Colors!
@@ -60,9 +62,6 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
         backgroundColor = colors.backgdColor()
-        
-        platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0, speed: platformSpeed!)
-        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: .None, speed: pointSpeed!))
         
         /* Create center shape and platform shape */
         
@@ -85,6 +84,17 @@ class GameScene: SKScene {
         lifeLabel!.zPosition = 101.00
         addChild(lifeLabel!)
         
+        /* Create alert label */
+        
+        alertLbl = SKLabelNode(fontNamed: FONT_ID)
+        alertLbl.text = ""
+        alertLbl.fontColor = OptionsViewController.colorDist(colors.backgdColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
+        alertLbl.fontSize = FONT_SIZE
+        alertLbl.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE)
+        alertLbl.horizontalAlignmentMode = .Center
+        alertLbl.zPosition = 0
+        addChild(alertLbl)
+        
         /* Create score labels */
         
         hScoreLbl = SKLabelNode(fontNamed: FONT_ID)
@@ -94,7 +104,6 @@ class GameScene: SKScene {
         hScoreLbl.horizontalAlignmentMode = .Left
         hScoreLbl.zPosition = 101.0
         hScoreLbl.text = "High: \(highScore)"
-        
         addChild(hScoreLbl)
         
         scoreLbl = SKLabelNode(fontNamed: FONT_ID)
@@ -123,6 +132,11 @@ class GameScene: SKScene {
         pptLbl.horizontalAlignmentMode = .Right
         pptLbl.zPosition = 101.0
         addChild(pptLbl)
+        
+        /* Initialize platform and initial point. */
+        
+        platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0, speed: platformSpeed!, cb: slowPoints, alertLbl: alertLbl)
+        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: .None, speed: pointSpeed!))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -228,9 +242,35 @@ class GameScene: SKScene {
     
     func spawn() {
         if !paused {
-            points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: streak > 4 ? .Doubled : .None, speed: pointSpeed!))
-            pointSpeed! += 5
+            points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: streak % 5 == 0 && streak != 0 ? randPower() : .None, speed: pointSpeed!))
+            pointSpeed! += 5 / (slowedPoints ? 1.5 : 1.0)
             self.spawning = false
+        }
+    }
+    
+    func randPower() -> Powers {
+        let rand = Int(arc4random_uniform(3))
+        
+        switch rand {
+        case 0:
+            return .Doubled
+        case 1:
+            return .SlowPoints
+        case 2:
+            return .FastPlatform
+        default:
+            print("ERROR: random value \(rand)")
+            return .None
+        }
+    }
+    
+    func slowPoints(makeSlower: Bool) {
+        slowedPoints = makeSlower
+        
+        if makeSlower {
+            pointSpeed! /= 1.5
+        } else {
+            pointSpeed! *= 1.5
         }
     }
     
@@ -304,4 +344,6 @@ class GameScene: SKScene {
 enum Powers {
     case None
     case Doubled
+    case SlowPoints
+    case FastPlatform
 }
