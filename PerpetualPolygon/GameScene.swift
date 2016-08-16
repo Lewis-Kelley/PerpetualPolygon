@@ -29,9 +29,11 @@ class GameScene: SKScene {
     // Status variables
     var spawning = false
     var score = 0
-    var life = 5
+    var life: Int?
     var streak = 0
     var lastTime: CFTimeInterval?
+    var platformSpeed: Double?
+    var pointSpeed: Double?
     
     // Labels
     var lifeLabel : SKLabelNode?
@@ -59,8 +61,8 @@ class GameScene: SKScene {
         let txtColor = OptionsViewController.colorDist(colors.shapeColor()) > OptionsViewController.TEXT_COLOR_CUTOFF ? UIColor.blackColor() : UIColor.whiteColor()
         backgroundColor = colors.backgdColor()
         
-        platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0)
-        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: .None))
+        platform = Platform(scene: self, sides: sides, fillCol: colors.backgdColor(), zPos: 1.0, speed: platformSpeed!)
+        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: .None, speed: pointSpeed!))
         
         /* Create center shape and platform shape */
         
@@ -76,7 +78,7 @@ class GameScene: SKScene {
         /* Create life label */
         
         lifeLabel = SKLabelNode(fontNamed: FONT_ID)
-        lifeLabel!.text = "\(life)"
+        lifeLabel!.text = "\(life!)"
         lifeLabel?.fontColor = txtColor
         lifeLabel!.fontSize = FONT_SIZE
         lifeLabel!.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame) - FONT_SIZE / 3.0)
@@ -91,6 +93,8 @@ class GameScene: SKScene {
         hScoreLbl.position = CGPoint(x: CGRectGetMinX(frame) + TEXT_BUFFER, y: CGRectGetMaxY(frame) - (IPAD ? 1.0 : 6.0) * FONT_SIZE) //Don't ask why the iPad flag. I don't know
         hScoreLbl.horizontalAlignmentMode = .Left
         hScoreLbl.zPosition = 101.0
+        hScoreLbl.text = "High: \(highScore)"
+        
         addChild(hScoreLbl)
         
         scoreLbl = SKLabelNode(fontNamed: FONT_ID)
@@ -139,7 +143,6 @@ class GameScene: SKScene {
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        hScoreLbl.text = "High: \(highScore)"
         scoreLbl.text = "Score: \(score)"
         pptLbl.text = "Streak: \(streak)" // TODO: Something fancy to show how close the player is getting to a ppt
         
@@ -170,9 +173,9 @@ class GameScene: SKScene {
     
     func removeFromArray(pointToFind : Point) {
         points.removeAtIndex(0)
-        self.life = self.life - 1
+        self.life = self.life! - 1
         self.streak = 0
-        self.lifeLabel?.text = "\(self.life)"
+        self.lifeLabel?.text = "\(self.life!)"
         platform.getPowerUp(.None)
         if (self.life <= 0) {
             self.paused = true
@@ -224,8 +227,11 @@ class GameScene: SKScene {
     }
     
     func spawn() {
-        points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: streak > 4 ? .Doubled : .None))
-        self.spawning = false
+        if !paused {
+            points.append(Point(scene: self, sides: sides, color: colors.pointsColor(), power: streak > 4 ? .Doubled : .None, speed: pointSpeed!))
+            pointSpeed! += 5
+            self.spawning = false
+        }
     }
     
     // MARK: HUD functions

@@ -14,6 +14,7 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
     let PLATFORM_TAG = 1
     let BACKGD_TAG = 2
     let SHAPE_TAG = 3
+    let FONT_SIZE: CGFloat = IPAD ? 40.0 : 20.0
     
     static let TEXT_COLOR_CUTOFF: Float = 0.30
     
@@ -94,6 +95,12 @@ class OptionsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         curTag = 0
         pressedBt(nil)
+        
+        let stdFont = pointsBt.titleLabel?.font.fontWithSize(FONT_SIZE)
+        pointsBt.titleLabel?.font = stdFont
+        platformBt.titleLabel?.font = stdFont
+        backgdBt.titleLabel?.font = stdFont
+        shapeBt.titleLabel?.font = stdFont
     }
     
     override func viewDidLoad() {

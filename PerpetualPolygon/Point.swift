@@ -14,7 +14,7 @@ class Point {
     let centerX : Double
     let centerY : Double
     var gameRunning : Bool = true
-    var SPEED : Double = 200
+    var speed : Double
     var radius : Double = 500
     let sides : Int
     let pos : Int // The side that the point will come from.
@@ -22,11 +22,12 @@ class Point {
     var angle : Double
     var pwr: Powers
     
-    init(scene : SKScene, sides : Int, color: UIColor, power: Powers) {
+    init(scene : SKScene, sides : Int, color: UIColor, power: Powers, speed: Double) {
         self.sides = sides
         self.scene = scene
         self.pos = Int(arc4random_uniform(UInt32(sides)))
         self.angle = (Double(self.pos) * Double(360 / Double(sides))) * (2 * 3.14 / 360)
+        self.speed = speed
         
         self.angle = self.angle + (3.14/2)
         
@@ -48,11 +49,10 @@ class Point {
     
     func update(delta: CFTimeInterval) {
         if (gameRunning){
-            radius -= SPEED * delta
-            print("Point's radius is now \(radius)")
+            radius -= speed * delta
             img.position = CGPoint(x: centerX + (radius * cos(angle)), y: centerY + (radius * sin(angle)))
             if (radius <= 0) {
-                self.SPEED = 0
+                self.speed = 0
                 self.gameRunning = false
                 self.scene.removeChildrenInArray([self.img])
                 (self.scene as! GameScene).removeFromArray(self)

@@ -12,7 +12,6 @@ import SpriteKit
 class Platform {
     let STENCIL_RADIUS: CGFloat = 250
     let TOLERANCE:CGFloat = 0.001
-    let SPEED:Double = 2.0 * M_PI / 1.0
     let PROCEED_WEIGHT:CGFloat = 1.25 // Increases the threashold that when released, the platform will finish it's current path. Larger = more likely
     let PWR_UP_TIME = 10.0
 
@@ -42,6 +41,7 @@ class Platform {
         return highPos
     }
     
+    var speed: Double = 2.0 * M_PI / 1.0
     var length = 1 //The number of sides taken up by the platform
     
     var movingCW = false
@@ -61,11 +61,12 @@ class Platform {
     
     var pwrUp = Powers.None
     
-    init(scene:SKScene, sides:Int, fillCol:SKColor, zPos:CGFloat) {
+    init(scene:SKScene, sides:Int, fillCol:SKColor, zPos:CGFloat, speed: Double) {
         self.scene = scene
         self.sides = sides
         self.fillCol = fillCol
         self.zPos = zPos
+        self.speed = speed
         
         makeImg()
     }
@@ -176,7 +177,7 @@ class Platform {
         }
         
         img.removeAllActions()
-        img.runAction(SKAction.sequence([SKAction.rotateToAngle(tarAng, duration: abs(Double(tarAng) - Double(img.zRotation)) / SPEED), SKAction.runBlock({ 
+        img.runAction(SKAction.sequence([SKAction.rotateToAngle(tarAng, duration: abs(Double(tarAng) - Double(img.zRotation)) / speed), SKAction.runBlock({ 
             if pressedL || pressedR {
                 self.firstCall = false
                 self.update(pressedL, pressedR: pressedR, resetFirstCall: false)

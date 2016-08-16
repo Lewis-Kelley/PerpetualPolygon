@@ -74,20 +74,35 @@ class GameViewController: UIViewController {
     func setDiff(scene: GameScene) {
         switch diff! {
         case 0:
+            scene.platformSpeed = M_PI * 2.0 / 1.5
+            scene.pointSpeed = 175.0
             scene.sides = 3
             scene.diff = "Easy"
+            scene.life = 1
         case 1:
+            scene.platformSpeed = M_PI * 2.0 / 1.25
+            scene.pointSpeed = 175.0
             scene.sides = 4
             scene.diff = "Medium"
+            scene.life = 2
         case 2:
+            scene.platformSpeed = M_PI * 2.0 / 1.0
+            scene.pointSpeed = 200.0
             scene.sides = 5
             scene.diff = "Hard"
+            scene.life = 3
         case 3:
+            scene.platformSpeed = M_PI * 2.0 / 0.75
+            scene.pointSpeed = 225.0
             scene.sides = 6
             scene.diff = "Extreme"
+            scene.life = 4
         case 4:
+            scene.platformSpeed = M_PI * 2.0 / 0.50
+            scene.pointSpeed = 225.0
             scene.sides = 7
             scene.diff = "Impossible"
+            scene.life = 5
         default:
             print("ERROR: Unrecognized difficulty number \(diff)")
         }

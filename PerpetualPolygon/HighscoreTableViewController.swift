@@ -19,7 +19,7 @@ class HighscoreViewController : UITableViewController {
     var highScoresToShow = [Highscore]()
     var managedObjectContext: NSManagedObjectContext?
     let highscoreRef = FIRDatabase.database().reference().child("highscores")
-    var filter = 0
+    var filter = Difficulty.All
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.highScoresToShow.count
@@ -36,7 +36,7 @@ class HighscoreViewController : UITableViewController {
         let alertController = UIAlertController(title: "\(self.diffCalc()) Difficutly", message: "", preferredStyle: .ActionSheet)
      
         let easyAction = UIAlertAction(title: "Easy", style: .Default) { (UIAlertAction) in
-            self.filter = 1
+            self.filter = .Easy
             alertController.title = "Easy Difficulty"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -44,7 +44,7 @@ class HighscoreViewController : UITableViewController {
         alertController.addAction(easyAction)
         
         let mediumAction = UIAlertAction(title: "Medium", style: .Default) { (UIAlertAction) in
-            self.filter = 2
+            self.filter = .Medium
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -52,7 +52,7 @@ class HighscoreViewController : UITableViewController {
         alertController.addAction(mediumAction)
         
         let hardAction = UIAlertAction(title: "Hard", style: .Default) { (UIAlertAction) in
-            self.filter = 3
+            self.filter = .Hard
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -60,7 +60,7 @@ class HighscoreViewController : UITableViewController {
         alertController.addAction(hardAction)
         
         let extremeAction = UIAlertAction(title: "Extreme", style: .Default) { (UIAlertAction) in
-            self.filter = 4
+            self.filter = .Extreme
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -68,7 +68,7 @@ class HighscoreViewController : UITableViewController {
         alertController.addAction(extremeAction)
         
         let impossibleAction = UIAlertAction(title: "Impossible", style: .Default) { (UIAlertAction) in
-            self.filter = 5
+            self.filter = .Impossible
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -76,7 +76,7 @@ class HighscoreViewController : UITableViewController {
         alertController.addAction(impossibleAction)
         
         let allAction = UIAlertAction(title: "All", style: .Default) { (UIAlertAction) in
-            self.filter = 0
+            self.filter = .All
             alertController.title = "\(self.diffCalc()) Difficutly"
             self.makeHighscoreArray()
             self.tableView.reloadData()
@@ -113,7 +113,7 @@ class HighscoreViewController : UITableViewController {
         self.highScoresToShow.removeAll()
         for highscore in self.highScores {
             let diff = self.diffCalc()
-            if highscore.difficulty == diff || filter == 0 {
+            if highscore.difficulty == diff || filter == .All {
                 self.highScoresToShow.append(highscore)
             }
         }
@@ -183,17 +183,18 @@ class HighscoreViewController : UITableViewController {
     }
     
     func diffCalc() -> String {
-        if filter == 0 {
+        switch filter {
+        case .All:
             return "All"
-        } else if filter == 1 {
+        case .Easy:
             return "Easy"
-        } else if filter == 2 {
+        case .Medium:
             return "Medium"
-        } else if filter == 3 {
+        case .Hard:
             return "Hard"
-        } else if filter == 4 {
+        case .Extreme:
             return "Extreme"
-        } else {
+        case .Impossible:
             return "Impossible"
         }
     }
@@ -209,4 +210,13 @@ class HighscoreViewController : UITableViewController {
             (segue.destinationViewController as! MenuViewController).managedObjectContext = managedObjectContext
         }
     }
+}
+
+enum Difficulty {
+    case All
+    case Easy
+    case Medium
+    case Hard
+    case Extreme
+    case Impossible
 }
